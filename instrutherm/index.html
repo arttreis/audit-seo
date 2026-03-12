@@ -205,6 +205,56 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .kw-table tbody tr:hover{background:var(--card-hover)}
 .kw-group{font-size:12px;font-weight:700;color:var(--accent);padding:12px 14px;background:var(--accent-glow);border-bottom:1px solid var(--border)}
 
+/* Scope Tabs */
+.scope-tabs{display:flex;gap:0;margin-bottom:0;border-bottom:2px solid var(--border)}
+.scope-tab{flex:1;padding:14px 16px;text-align:center;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-dim);border:1px solid var(--border);border-bottom:none;background:var(--surface);transition:all .25s;border-radius:var(--radius-sm) var(--radius-sm) 0 0;margin-right:-1px;position:relative}
+.scope-tab:last-child{margin-right:0}
+.scope-tab:hover{color:var(--text-muted);background:var(--card)}
+.scope-tab.active{color:var(--text);background:var(--card);border-bottom:2px solid var(--accent);margin-bottom:-2px}
+.scope-tab .tab-hours{display:block;font-size:22px;font-weight:800;margin:4px 0 2px}
+.scope-tab .tab-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim)}
+.scope-tab.tab-basic .tab-hours{color:var(--cyan)}
+.scope-tab.tab-medium .tab-hours{color:var(--accent)}
+.scope-tab.tab-complete .tab-hours{color:var(--green)}
+.scope-tab .tab-badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:10px;margin-top:4px;font-weight:700;letter-spacing:.5px}
+
+.scope-panel{display:none;background:var(--card);border:1px solid var(--border);border-top:none;border-radius:0 0 var(--radius) var(--radius);padding:28px}
+.scope-panel.active{display:block}
+.scope-panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.scope-panel-title{font-size:18px;font-weight:700}
+.scope-panel-meta{display:flex;gap:10px;flex-wrap:wrap}
+.scope-panel-chip{font-size:11px;font-weight:600;padding:4px 12px;border-radius:16px}
+
+.scope-section{margin-bottom:24px}
+.scope-section:last-child{margin-bottom:0}
+.scope-section-title{font-size:13px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.scope-section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.deliverable-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.deliverable-item{display:flex;align-items:flex-start;gap:10px;padding:12px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12.5px;transition:all .2s}
+.deliverable-item:hover{border-color:var(--accent)}
+.deliverable-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.deliverable-text{flex:1}
+.deliverable-text strong{color:var(--text);display:block;margin-bottom:2px;font-size:12.5px}
+.deliverable-text span{color:var(--text-muted);font-size:11.5px;line-height:1.4}
+.deliverable-item.excluded{opacity:.35;border-style:dashed}
+.deliverable-item.excluded .deliverable-text strong{text-decoration:line-through}
+
+.scope-team-table{width:100%;border-collapse:collapse;margin-top:8px}
+.scope-team-table tr{border-bottom:1px solid rgba(255,255,255,.04)}
+.scope-team-table tr:last-child{border-bottom:none}
+.scope-team-table td{padding:8px 0;font-size:12.5px}
+.scope-team-table td:first-child{color:var(--text-muted);width:40%}
+.scope-team-table td:nth-child(2){font-weight:600;text-align:center;width:15%}
+.scope-team-table td:last-child{color:var(--text-muted);font-size:11.5px}
+.scope-total-row td{font-weight:700;color:var(--accent);padding-top:12px;border-top:2px solid var(--accent)}
+
+.scope-result{display:flex;align-items:center;gap:16px;padding:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);margin-top:16px}
+.scope-result-icon{font-size:28px}
+.scope-result-text{flex:1}
+.scope-result-text strong{display:block;font-size:14px;margin-bottom:2px}
+.scope-result-text span{font-size:12px;color:var(--text-muted)}
+
 /* Technical divider */
 .tech-divider{display:flex;align-items:center;gap:16px;margin:48px 0 12px;padding:16px 0}
 .tech-divider .divider-line{flex:1;height:2px;background:linear-gradient(90deg,var(--border),transparent)}
@@ -268,7 +318,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     </div>
     <div class="nav-section">
       <div class="nav-label">Proposta</div>
-      <a href="#investment" class="nav-item"><span class="icon">💰</span> Investimento & Equipe</a>
+      <a href="#investment" class="nav-item"><span class="icon">💰</span> Escopo & Investimento</a>
       <a href="#opportunities" class="nav-item"><span class="icon">🚀</span> Oportunidades</a>
       <a href="#keywords" class="nav-item"><span class="icon">🔑</span> Palavras-Chave</a>
     </div>
@@ -407,65 +457,376 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     </div>
   </div>
 
-  <!-- ===================== INVESTIMENTO & EQUIPE ===================== -->
+  <!-- ===================== INVESTIMENTO & ESCOPO ===================== -->
   <div class="section-header" id="investment">
     <div class="section-icon" style="background:var(--blue-bg);color:var(--blue)">💰</div>
-    <h2>Investimento & Equipe Necessária</h2>
+    <h2>Escopo do Projeto & Investimento</h2>
     <div class="line"></div>
   </div>
 
-  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Para levar o site de <strong style="color:var(--orange)">48/100</strong> para <strong style="color:var(--green)">80+/100</strong>, estimamos o seguinte investimento em profissionais e horas de trabalho:</p>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Três opções de escopo para levar o site de <strong style="color:var(--orange)">48/100</strong> para patamares competitivos. Cada opção inclui entregáveis concretos e equipe dimensionada.</p>
 
-  <table class="invest-table animate">
-    <thead>
-      <tr>
-        <th>Profissional</th>
-        <th>Escopo</th>
-        <th>Horas</th>
-        <th>Foco Principal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Especialista SEO / Analista</strong></td>
-        <td>Estratégia, specs, keywords, gestão</td>
-        <td style="text-align:center;font-weight:600">42h</td>
-        <td>Schema specs, meta descriptions, keyword research, coordenação</td>
-      </tr>
-      <tr>
-        <td><strong>Dev Magento 2 (Backend)</strong></td>
-        <td>Schema, cache, canonical, TTFB</td>
-        <td style="text-align:center;font-weight:600">46h</td>
-        <td>JSON-LD dinâmico, Varnish/Redis, canonical tags, sitemap</td>
-      </tr>
-      <tr>
-        <td><strong>Dev Frontend</strong></td>
-        <td>Headings, preload, imagens</td>
-        <td style="text-align:center;font-weight:600">21h</td>
-        <td>H1 fix, WebP, preload hints, limpeza templates</td>
-      </tr>
-      <tr>
-        <td><strong>Redator / Content Writer</strong></td>
-        <td>Conteúdo categorias, blog, metas</td>
-        <td style="text-align:center;font-weight:600">54h</td>
-        <td>40+ descrições de categoria, meta descriptions, blog AEO</td>
-      </tr>
-      <tr>
-        <td><strong>DevOps / Infraestrutura</strong></td>
-        <td>HSTS, CSP, Cloudflare, robots</td>
-        <td style="text-align:center;font-weight:600">12h</td>
-        <td>Cache rules, segurança, AI crawler policies</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td><strong>TOTAL</strong></td>
-        <td></td>
-        <td style="text-align:center"><strong>175h</strong></td>
-        <td>Prazo estimado: 8-12 semanas</td>
-      </tr>
-    </tfoot>
-  </table>
+  <!-- Scope Tabs -->
+  <div class="scope-tabs">
+    <div class="scope-tab tab-basic active" onclick="switchScope('basic')">
+      Projeto Essencial
+      <span class="tab-hours">72h</span>
+      <span class="tab-label">4-6 semanas</span>
+      <div><span class="tab-badge" style="background:var(--cyan-bg);color:var(--cyan)">Quick Fixes</span></div>
+    </div>
+    <div class="scope-tab tab-medium" onclick="switchScope('medium')">
+      Projeto Intermediário
+      <span class="tab-hours">132h</span>
+      <span class="tab-label">8-10 semanas</span>
+      <div><span class="tab-badge" style="background:var(--accent-glow);color:var(--accent)">Recomendado</span></div>
+    </div>
+    <div class="scope-tab tab-complete" onclick="switchScope('complete')">
+      Projeto Completo
+      <span class="tab-hours">210h</span>
+      <span class="tab-label">12-16 semanas</span>
+      <div><span class="tab-badge" style="background:var(--green-bg);color:var(--green)">Máximo ROI</span></div>
+    </div>
+  </div>
+
+  <!-- ===== ESCOPO BÁSICO ===== -->
+  <div class="scope-panel active" id="scope-basic">
+    <div class="scope-panel-header">
+      <div class="scope-panel-title">Projeto Essencial — Correções Críticas</div>
+      <div class="scope-panel-meta">
+        <span class="scope-panel-chip" style="background:var(--cyan-bg);color:var(--cyan)">72 horas</span>
+        <span class="scope-panel-chip" style="background:var(--surface);color:var(--text-muted);border:1px solid var(--border)">Meta: 48 → 62 pontos</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Foco nos 4 problemas críticos que travam o crescimento. Resolução rápida com impacto imediato nos resultados de busca. Ideal para validar o retorno antes de investir no escopo completo.</p>
+
+    <div class="scope-section">
+      <div class="scope-section-title">Entregáveis</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🧩</span>
+          <div class="deliverable-text">
+            <strong>Schema.org Básico (JSON-LD)</strong>
+            <span>Organization + Product em páginas de produto + BreadcrumbList. Rich results no Google.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🏷️</span>
+          <div class="deliverable-text">
+            <strong>Tags Canonical em Todas as Páginas</strong>
+            <span>Self-referencing canonicals para eliminar conteúdo duplicado no Magento.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📝</span>
+          <div class="deliverable-text">
+            <strong>Meta Descriptions (Top 30 Páginas)</strong>
+            <span>Descrições únicas e persuasivas para homepage, categorias principais e produtos top.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🏗️</span>
+          <div class="deliverable-text">
+            <strong>Correção de Hierarquia H1</strong>
+            <span>1 H1 por página. Categorias da homepage movidas para H2/H3.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🕷️</span>
+          <div class="deliverable-text">
+            <strong>Otimização do robots.txt</strong>
+            <span>Crawl-delay de 15s → 1s. Políticas de AI crawlers (GPTBot, ClaudeBot).</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🗺️</span>
+          <div class="deliverable-text">
+            <strong>Atualização do Sitemap</strong>
+            <span>Correção das datas lastmod (2021-2022 → atuais). Validação de URLs.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📊</span>
+          <div class="deliverable-text">
+            <strong>Relatório de Keyword Research</strong>
+            <span>Mapeamento de 50+ keywords com volume, dificuldade e priorização.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📋</span>
+          <div class="deliverable-text">
+            <strong>Documento de Specs Técnicas</strong>
+            <span>Specs detalhadas para cada implementação, prontas para o dev executar.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scope-section">
+      <div class="scope-section-title">Equipe & Horas</div>
+      <table class="scope-team-table">
+        <tr><td>Especialista SEO / Analista</td><td>24h</td><td>Specs, keyword research, meta descriptions, coordenação</td></tr>
+        <tr><td>Dev Magento 2 (Backend)</td><td>28h</td><td>Schema JSON-LD, canonical tags, sitemap fix</td></tr>
+        <tr><td>Dev Frontend</td><td>10h</td><td>Hierarquia H1, ajustes de heading</td></tr>
+        <tr><td>DevOps / Infraestrutura</td><td>6h</td><td>robots.txt, crawl-delay, AI crawler policies</td></tr>
+        <tr><td>Redator</td><td>4h</td><td>Meta descriptions das top 30 páginas</td></tr>
+        <tr class="scope-total-row"><td><strong>TOTAL</strong></td><td><strong>72h</strong></td><td>Prazo: 4-6 semanas</td></tr>
+      </table>
+    </div>
+
+    <div class="scope-result">
+      <div class="scope-result-icon">🎯</div>
+      <div class="scope-result-text">
+        <strong>Resultado Esperado</strong>
+        <span>Rich results de produtos no Google, eliminação de conteúdo duplicado, crawl 15x mais rápido. Primeiros resultados visíveis em 4-6 semanas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ESCOPO MÉDIO ===== -->
+  <div class="scope-panel" id="scope-medium">
+    <div class="scope-panel-header">
+      <div class="scope-panel-title">Projeto Intermediário — Crescimento Acelerado</div>
+      <div class="scope-panel-meta">
+        <span class="scope-panel-chip" style="background:var(--accent-glow);color:var(--accent)">132 horas</span>
+        <span class="scope-panel-chip" style="background:var(--accent-glow);color:var(--accent)">Recomendado</span>
+        <span class="scope-panel-chip" style="background:var(--surface);color:var(--text-muted);border:1px solid var(--border)">Meta: 48 → 74 pontos</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Inclui tudo do Essencial + conteúdo de categorias, performance e otimização de imagens. Equilíbrio entre investimento e resultado — cobre os itens críticos e de alto impacto. <strong style="color:var(--accent)">Melhor relação custo-benefício.</strong></p>
+
+    <div class="scope-section">
+      <div class="scope-section-title">Entregáveis — Tudo do Essencial +</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📄</span>
+          <div class="deliverable-text">
+            <strong>Conteúdo para 20 Categorias Principais</strong>
+            <span>Textos descritivos de 200-300 palavras por categoria com keywords otimizadas. Foco nas categorias de maior volume.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📝</span>
+          <div class="deliverable-text">
+            <strong>Meta Descriptions (Todas as Páginas)</strong>
+            <span>Expansão para todas as categorias e produtos principais (~100 páginas).</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">⚡</span>
+          <div class="deliverable-text">
+            <strong>Otimização de TTFB</strong>
+            <span>Configuração de Full Page Cache (Varnish/Redis). Meta: 1.37s → &lt;0.8s.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🖼️</span>
+          <div class="deliverable-text">
+            <strong>Conversão de Imagens para WebP</strong>
+            <span>Conversão automatizada com fallback JPEG. Redução de 30-50% no peso.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🔒</span>
+          <div class="deliverable-text">
+            <strong>HSTS + Headers de Segurança</strong>
+            <span>Strict-Transport-Security, CSP em modo enforced, limpeza de headers duplicados.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🏷️</span>
+          <div class="deliverable-text">
+            <strong>Title Tags Otimizadas</strong>
+            <span>Reescrita de titles com marca + proposta de valor em todas as categorias.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🔗</span>
+          <div class="deliverable-text">
+            <strong>Preload Hints para Recursos Críticos</strong>
+            <span>CSS, fontes e imagens hero com preload para melhorar LCP.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📦</span>
+          <div class="deliverable-text">
+            <strong>Cache Headers Otimizados</strong>
+            <span>Remoção de no-cache/no-store. Regras de cache por tipo de página via Cloudflare.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🧩</span>
+          <div class="deliverable-text">
+            <strong>Schema WebSite + SearchAction</strong>
+            <span>Sitelinks search box no Google + schema LocalBusiness para busca local.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📈</span>
+          <div class="deliverable-text">
+            <strong>Relatório Mensal de Performance</strong>
+            <span>2 relatórios de acompanhamento (semana 4 e 8) com métricas e ajustes.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scope-section">
+      <div class="scope-section-title">Equipe & Horas</div>
+      <table class="scope-team-table">
+        <tr><td>Especialista SEO / Analista</td><td>34h</td><td>Specs, keyword research, meta descriptions, titles, reports, coordenação</td></tr>
+        <tr><td>Dev Magento 2 (Backend)</td><td>38h</td><td>Schema completo, Varnish/Redis, canonical, sitemap, cache headers</td></tr>
+        <tr><td>Dev Frontend</td><td>18h</td><td>H1 fix, WebP pipeline, preload hints, title tags</td></tr>
+        <tr><td>Redator / Content Writer</td><td>28h</td><td>20 categorias + meta descriptions (100 páginas)</td></tr>
+        <tr><td>DevOps / Infraestrutura</td><td>10h</td><td>HSTS, CSP, Cloudflare rules, robots.txt, AI crawlers</td></tr>
+        <tr><td>QA / Validação</td><td>4h</td><td>Teste de Schema (Rich Results Test), validação de cache, CWV</td></tr>
+        <tr class="scope-total-row"><td><strong>TOTAL</strong></td><td><strong>132h</strong></td><td>Prazo: 8-10 semanas</td></tr>
+      </table>
+    </div>
+
+    <div class="scope-result">
+      <div class="scope-result-icon">🚀</div>
+      <div class="scope-result-text">
+        <strong>Resultado Esperado</strong>
+        <span>Tudo do Essencial + páginas de categoria rankeando para keywords comerciais, tempo de carregamento 40% mais rápido, aumento de 15-25% no tráfego orgânico em 8-10 semanas.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ESCOPO COMPLETO ===== -->
+  <div class="scope-panel" id="scope-complete">
+    <div class="scope-panel-header">
+      <div class="scope-panel-title">Projeto Completo — Domínio do Mercado</div>
+      <div class="scope-panel-meta">
+        <span class="scope-panel-chip" style="background:var(--green-bg);color:var(--green)">210 horas</span>
+        <span class="scope-panel-chip" style="background:var(--green-bg);color:var(--green)">Máximo ROI</span>
+        <span class="scope-panel-chip" style="background:var(--surface);color:var(--text-muted);border:1px solid var(--border)">Meta: 48 → 85+ pontos</span>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Transformação completa da presença digital. Inclui tudo do Intermediário + conteúdo para todas as categorias, otimização para IA, blog estratégico e monitoramento contínuo. Posiciona a Instrutherm como <strong style="color:var(--green)">referência online em instrumentos de medição no Brasil</strong>.</p>
+
+    <div class="scope-section">
+      <div class="scope-section-title">Entregáveis — Tudo do Intermediário +</div>
+      <div class="deliverable-grid">
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📄</span>
+          <div class="deliverable-text">
+            <strong>Conteúdo para TODAS as 40+ Categorias</strong>
+            <span>Textos descritivos completos com guia de compra, aplicações e diferenciadores técnicos.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🤖</span>
+          <div class="deliverable-text">
+            <strong>Arquivo llms.txt Completo</strong>
+            <span>Informações da empresa, catálogo de produtos e páginas-chave para AI crawlers.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">✍️</span>
+          <div class="deliverable-text">
+            <strong>6 Artigos de Blog Otimizados para IA</strong>
+            <span>Conteúdo Q&A estruturado, estatísticas citáveis, posicionamento para AI Overviews e Perplexity.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🖼️</span>
+          <div class="deliverable-text">
+            <strong>Image Sitemap Dedicado</strong>
+            <span>Sitemap XML específico para imagens de produtos, otimizando Google Images.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📍</span>
+          <div class="deliverable-text">
+            <strong>Schema LocalBusiness Completo</strong>
+            <span>Markup para endereço, showroom São Paulo, horários, contato. Visibilidade local.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🔔</span>
+          <div class="deliverable-text">
+            <strong>Implementação IndexNow</strong>
+            <span>Notificação automática ao Google/Bing quando conteúdo é atualizado.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">👤</span>
+          <div class="deliverable-text">
+            <strong>Atribuição de Autoria no Blog</strong>
+            <span>Perfis de autor com credenciais técnicas para reforçar E-E-A-T.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📊</span>
+          <div class="deliverable-text">
+            <strong>Dashboard de Monitoramento</strong>
+            <span>Acompanhamento semanal de rankings, tráfego orgânico e CWV por 12 semanas.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">🏆</span>
+          <div class="deliverable-text">
+            <strong>Análise de Concorrência Detalhada</strong>
+            <span>Comparação com Instrubras, Impac, Minipa e Homis. Gaps e oportunidades.</span>
+          </div>
+        </div>
+        <div class="deliverable-item">
+          <span class="deliverable-icon">📋</span>
+          <div class="deliverable-text">
+            <strong>Playbook SEO para Equipe Interna</strong>
+            <span>Documento com processos, checklists e guidelines para manutenção contínua do SEO.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scope-section">
+      <div class="scope-section-title">Equipe & Horas</div>
+      <table class="scope-team-table">
+        <tr><td>Especialista SEO / Analista</td><td>48h</td><td>Estratégia completa, specs, keywords, concorrência, reports, playbook, coordenação</td></tr>
+        <tr><td>Dev Magento 2 (Backend)</td><td>46h</td><td>Schema completo, Varnish/Redis, canonical, sitemap, IndexNow, image sitemap</td></tr>
+        <tr><td>Dev Frontend</td><td>22h</td><td>H1 fix, WebP, preload, title tags, autoria, limpeza templates</td></tr>
+        <tr><td>Redator / Content Writer</td><td>64h</td><td>40+ categorias, meta descriptions, 6 artigos de blog AEO, llms.txt</td></tr>
+        <tr><td>DevOps / Infraestrutura</td><td>14h</td><td>HSTS, CSP, Cloudflare, robots.txt, AI crawlers, IndexNow, monitoramento</td></tr>
+        <tr><td>Analista de Dados</td><td>10h</td><td>Dashboard de rankings, análise de concorrência, reports semanais</td></tr>
+        <tr><td>QA / Validação</td><td>6h</td><td>Schema validation, CWV audit, cross-browser, mobile</td></tr>
+        <tr class="scope-total-row"><td><strong>TOTAL</strong></td><td><strong>210h</strong></td><td>Prazo: 12-16 semanas</td></tr>
+      </table>
+    </div>
+
+    <div class="scope-result">
+      <div class="scope-result-icon">👑</div>
+      <div class="scope-result-text">
+        <strong>Resultado Esperado</strong>
+        <span>Domínio orgânico no nicho de instrumentos de medição. 2-3x tráfego orgânico, visibilidade em AI search (ChatGPT, Perplexity), 40+ categorias rankeando, blog gerando tráfego qualificado. ROI estimado em 6-12 meses.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Summary -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;margin-bottom:32px">
+    <div class="stat-card animate" style="border-left:3px solid var(--cyan)">
+      <div style="font-size:11px;color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Essencial</div>
+      <div class="stat-value" style="color:var(--cyan);font-size:24px">72h</div>
+      <div class="stat-label">8 entregáveis · 48→62pts</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:6px">4-6 semanas · 5 profissionais</div>
+    </div>
+    <div class="stat-card animate" style="border-left:3px solid var(--accent)">
+      <div style="font-size:11px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Intermediário</div>
+      <div class="stat-value" style="color:var(--accent);font-size:24px">132h</div>
+      <div class="stat-label">18 entregáveis · 48→74pts</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:6px">8-10 semanas · 6 profissionais</div>
+    </div>
+    <div class="stat-card animate" style="border-left:3px solid var(--green)">
+      <div style="font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Completo</div>
+      <div class="stat-value" style="color:var(--green);font-size:24px">210h</div>
+      <div class="stat-label">28 entregáveis · 48→85+pts</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:6px">12-16 semanas · 7 profissionais</div>
+    </div>
+  </div>
 
   <!-- ===================== OPORTUNIDADES DE NEGÓCIO ===================== -->
   <div class="section-header" id="opportunities">
@@ -1393,6 +1754,14 @@ document.querySelectorAll('.nav-item').forEach(link => {
     link.classList.add('active');
   });
 });
+
+// Scope tabs
+function switchScope(scope) {
+  document.querySelectorAll('.scope-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.scope-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('.tab-' + scope).classList.add('active');
+  document.getElementById('scope-' + scope).classList.add('active');
+}
 </script>
 </body>
 </html>
