@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Audit — instrutherm.com.br</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0b14;
+  --surface:#13131f;
+  --card:#1a1a2c;
+  --card-hover:#21213a;
+  --border:#2a2a40;
+  --text:#e4e4ef;
+  --text-muted:#8888a4;
+  --text-dim:#5a5a76;
+  --accent:#7c5cff;
+  --accent-glow:rgba(124,92,255,.15);
+  --green:#22c55e;
+  --green-bg:rgba(34,197,94,.12);
+  --yellow:#f59e0b;
+  --yellow-bg:rgba(245,158,11,.12);
+  --orange:#f97316;
+  --orange-bg:rgba(249,115,22,.12);
+  --red:#ef4444;
+  --red-bg:rgba(239,68,68,.12);
+  --blue:#3b82f6;
+  --blue-bg:rgba(59,130,246,.12);
+  --cyan:#06b6d4;
+  --cyan-bg:rgba(6,182,212,.12);
+  --radius:14px;
+  --radius-sm:8px;
+  --radius-xs:6px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text-dim)}
+
+/* Layout */
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;background:var(--surface);border-right:1px solid var(--border);padding:24px 16px;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100;display:flex;flex-direction:column}
+.main{margin-left:260px;flex:1;padding:32px 40px;max-width:1200px}
+
+/* Sidebar */
+.logo{display:flex;align-items:center;gap:10px;padding:0 8px 24px;border-bottom:1px solid var(--border);margin-bottom:20px}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),#a78bfa);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-size:16px;font-weight:700;letter-spacing:-.3px}
+.logo-text span{color:var(--accent)}
+
+.nav-section{margin-bottom:24px}
+.nav-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-dim);padding:0 12px;margin-bottom:8px;font-weight:600}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius-sm);color:var(--text-muted);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-decoration:none}
+.nav-item:hover,.nav-item.active{background:var(--accent-glow);color:var(--text)}
+.nav-item.active{color:var(--accent)}
+.nav-item .icon{font-size:16px;width:20px;text-align:center}
+.nav-badge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
+.nav-badge.warn{background:var(--orange)}
+.nav-badge.ok{background:var(--green)}
+
+.sidebar-score{margin-top:auto;padding:20px 12px;border-top:1px solid var(--border)}
+.sidebar-score-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.sidebar-score-value{font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--orange),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.sidebar-score-max{font-size:14px;color:var(--text-dim);margin-top:2px}
+
+/* Header */
+.header{margin-bottom:36px}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.header h1{font-size:28px;font-weight:800;letter-spacing:-.5px}
+.header h1 span{color:var(--accent)}
+.header-meta{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+.meta-chip{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:20px;font-size:12px;color:var(--text-muted)}
+.meta-chip .dot{width:6px;height:6px;border-radius:50%}
+.header-date{font-size:13px;color:var(--text-dim);margin-top:12px}
+
+/* Score Ring */
+.score-hero{display:flex;gap:32px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:32px}
+.score-ring-wrap{position:relative;width:160px;height:160px;flex-shrink:0}
+.score-ring-wrap svg{transform:rotate(-90deg)}
+.score-ring-bg{fill:none;stroke:var(--border);stroke-width:10}
+.score-ring-fill{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease}
+.score-ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.score-ring-text .num{font-size:44px;font-weight:800;line-height:1}
+.score-ring-text .label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.score-details{flex:1}
+.score-details h2{font-size:20px;font-weight:700;margin-bottom:4px}
+.score-details p{font-size:13px;color:var(--text-muted);margin-bottom:20px;max-width:500px}
+.score-bars{display:flex;flex-direction:column;gap:10px}
+.score-bar-row{display:flex;align-items:center;gap:12px}
+.score-bar-label{font-size:12px;color:var(--text-muted);width:160px;flex-shrink:0}
+.score-bar-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:4px;transition:width 1.2s ease}
+.score-bar-val{font-size:12px;font-weight:600;width:36px;text-align:right;flex-shrink:0}
+
+/* Cards grid */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;margin-bottom:32px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .25s}
+.card:hover{border-color:var(--accent);background:var(--card-hover)}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
+.card-score{font-size:22px;font-weight:800}
+.card-score.good{color:var(--green)}
+.card-score.warn{color:var(--yellow)}
+.card-score.bad{color:var(--orange)}
+.card-score.critical{color:var(--red)}
+
+/* Tables inside cards */
+.audit-table{width:100%;border-collapse:collapse}
+.audit-table tr{border-bottom:1px solid rgba(255,255,255,.04)}
+.audit-table tr:last-child{border-bottom:none}
+.audit-table td{padding:8px 0;font-size:12.5px;vertical-align:top}
+.audit-table td:first-child{color:var(--text-muted);width:45%;padding-right:12px}
+.audit-table td:last-child{font-weight:500}
+
+/* Status badges */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.badge-good{background:var(--green-bg);color:var(--green)}
+.badge-warn{background:var(--yellow-bg);color:var(--yellow)}
+.badge-bad{background:var(--orange-bg);color:var(--orange)}
+.badge-critical{background:var(--red-bg);color:var(--red)}
+.badge-info{background:var(--blue-bg);color:var(--blue)}
+.badge-na{background:rgba(255,255,255,.05);color:var(--text-dim)}
+
+/* Section headers */
+.section-header{display:flex;align-items:center;gap:12px;margin:40px 0 20px}
+.section-header h2{font-size:20px;font-weight:700}
+.section-header .line{flex:1;height:1px;background:var(--border)}
+.section-header .section-icon{width:32px;height:32px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:16px}
+
+/* Action items */
+.action-list{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.action-item{display:flex;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;transition:all .25s}
+.action-item:hover{border-color:var(--accent);background:var(--card-hover)}
+.action-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.action-num.critical{background:var(--red-bg);color:var(--red)}
+.action-num.high{background:var(--orange-bg);color:var(--orange)}
+.action-num.medium{background:var(--yellow-bg);color:var(--yellow)}
+.action-num.low{background:var(--green-bg);color:var(--green)}
+.action-body{flex:1}
+.action-title{font-size:14px;font-weight:600;margin-bottom:4px}
+.action-desc{font-size:12.5px;color:var(--text-muted);line-height:1.5}
+.action-meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.action-tag{font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.action-tag.effort-low{background:var(--green-bg);color:var(--green)}
+.action-tag.effort-med{background:var(--yellow-bg);color:var(--yellow)}
+.action-tag.effort-high{background:var(--orange-bg);color:var(--orange)}
+.action-tag.impact-5{background:var(--accent-glow);color:var(--accent)}
+.action-tag.impact-4{background:var(--blue-bg);color:var(--blue)}
+.action-tag.impact-3{background:var(--cyan-bg);color:var(--cyan)}
+
+/* Schema section */
+.schema-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:32px}
+.schema-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;text-align:center;transition:all .25s}
+.schema-card:hover{border-color:var(--accent)}
+.schema-card .icon{font-size:24px;margin-bottom:8px}
+.schema-card .name{font-size:13px;font-weight:600;margin-bottom:4px}
+.schema-card .status{font-size:11px}
+
+/* Quick wins table */
+.qw-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-bottom:32px}
+.qw-table thead th{background:var(--surface);padding:12px 16px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:600;border-bottom:1px solid var(--border)}
+.qw-table tbody td{padding:12px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,.03)}
+.qw-table tbody tr:last-child td{border-bottom:none}
+.qw-table tbody tr:hover{background:var(--card-hover)}
+.stars{color:var(--yellow);letter-spacing:2px}
+.stars-dim{color:var(--border);letter-spacing:2px}
+
+/* Responsive */
+@media(max-width:1024px){
+  .sidebar{display:none}
+  .main{margin-left:0;padding:20px}
+  .score-hero{flex-direction:column;text-align:center}
+  .score-bar-label{width:120px}
+  .cards-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .header h1{font-size:22px}
+  .score-ring-wrap{width:120px;height:120px}
+  .score-ring-text .num{font-size:32px}
+  .action-item{flex-direction:column;gap:10px}
+}
+
+/* Animations */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeInUp .5s ease forwards;opacity:0}
+.animate:nth-child(1){animation-delay:.05s}
+.animate:nth-child(2){animation-delay:.1s}
+.animate:nth-child(3){animation-delay:.15s}
+.animate:nth-child(4){animation-delay:.2s}
+.animate:nth-child(5){animation-delay:.25s}
+.animate:nth-child(6){animation-delay:.3s}
+.animate:nth-child(7){animation-delay:.35s}
+
+/* Severity indicator bar on left of card */
+.card-sev{border-left:3px solid transparent;padding-left:21px}
+.card-sev.sev-green{border-left-color:var(--green)}
+.card-sev.sev-yellow{border-left-color:var(--yellow)}
+.card-sev.sev-orange{border-left-color:var(--orange)}
+.card-sev.sev-red{border-left-color:var(--red)}
+
+/* Footer */
+.footer{margin-top:60px;padding:24px 0;border-top:1px solid var(--border);text-align:center;font-size:12px;color:var(--text-dim)}
+.footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="app">
+
+<!-- Sidebar -->
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-icon">🔍</div>
+    <div class="logo-text"><span>SEO</span> Audit</div>
+  </div>
+
+  <nav>
+    <div class="nav-section">
+      <div class="nav-label">Overview</div>
+      <a href="#score" class="nav-item active"><span class="icon">📊</span> Health Score <span class="nav-badge warn">48</span></a>
+      <a href="#summary" class="nav-item"><span class="icon">📋</span> Resumo Geral</a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Categorias</div>
+      <a href="#technical" class="nav-item"><span class="icon">⚙️</span> Technical SEO <span class="nav-badge warn">55</span></a>
+      <a href="#content" class="nav-item"><span class="icon">📝</span> Conteúdo <span class="nav-badge">35</span></a>
+      <a href="#onpage" class="nav-item"><span class="icon">🏷️</span> On-Page SEO <span class="nav-badge">40</span></a>
+      <a href="#schema" class="nav-item"><span class="icon">🧩</span> Schema <span class="nav-badge">15</span></a>
+      <a href="#performance" class="nav-item"><span class="icon">⚡</span> Performance <span class="nav-badge warn">45</span></a>
+      <a href="#geo" class="nav-item"><span class="icon">🤖</span> AI / GEO <span class="nav-badge">20</span></a>
+      <a href="#images" class="nav-item"><span class="icon">🖼️</span> Imagens <span class="nav-badge ok">55</span></a>
+    </div>
+    <div class="nav-section">
+      <div class="nav-label">Ações</div>
+      <a href="#actions" class="nav-item"><span class="icon">🎯</span> Plano de Ação</a>
+      <a href="#quickwins" class="nav-item"><span class="icon">⚡</span> Quick Wins</a>
+    </div>
+  </nav>
+
+  <div class="sidebar-score">
+    <div class="sidebar-score-label">SEO Health Score</div>
+    <div class="sidebar-score-value">48</div>
+    <div class="sidebar-score-max">de 100 pontos</div>
+  </div>
+</aside>
+
+<!-- Main Content -->
+<main class="main">
+
+  <!-- Header -->
+  <header class="header" id="score">
+    <div class="header-top">
+      <div>
+        <h1>SEO Audit — <span>instrutherm.com.br</span></h1>
+        <div class="header-meta">
+          <div class="meta-chip"><span class="dot" style="background:var(--green)"></span> E-commerce</div>
+          <div class="meta-chip"><span class="dot" style="background:var(--accent)"></span> Magento 2</div>
+          <div class="meta-chip"><span class="dot" style="background:var(--cyan)"></span> Cloudflare</div>
+          <div class="meta-chip"><span class="dot" style="background:var(--yellow)"></span> pt-BR</div>
+        </div>
+        <div class="header-date">Auditoria realizada em 12 de março de 2026 &nbsp;·&nbsp; ~700 URLs indexadas &nbsp;·&nbsp; 35+ anos de mercado</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Score Hero -->
+  <section class="score-hero animate">
+    <div class="score-ring-wrap">
+      <svg viewBox="0 0 160 160" width="160" height="160">
+        <circle class="score-ring-bg" cx="80" cy="80" r="68"/>
+        <circle class="score-ring-fill" cx="80" cy="80" r="68"
+          stroke="url(#scoreGrad)"
+          stroke-dasharray="427.3"
+          stroke-dashoffset="222.2"/>
+        <defs>
+          <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f97316"/>
+            <stop offset="100%" stop-color="#f59e0b"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="score-ring-text">
+        <div class="num" style="color:var(--orange)">48</div>
+        <div class="label">de 100</div>
+      </div>
+    </div>
+    <div class="score-details">
+      <h2>Pontuação Geral do Site</h2>
+      <p>O site apresenta boa infraestrutura (Cloudflare, HTTPS, HTTP/3) mas possui lacunas críticas em Schema markup, conteúdo de categorias e otimização para IA. A implementação de dados estruturados é a maior oportunidade de ganho imediato.</p>
+      <div class="score-bars">
+        <div class="score-bar-row">
+          <span class="score-bar-label">Technical SEO</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:55%;background:var(--yellow)"></div></div>
+          <span class="score-bar-val" style="color:var(--yellow)">55</span>
+        </div>
+        <div class="score-bar-row">
+          <span class="score-bar-label">Qualidade de Conteúdo</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:35%;background:var(--red)"></div></div>
+          <span class="score-bar-val" style="color:var(--red)">35</span>
+        </div>
+        <div class="score-bar-row">
+          <span class="score-bar-label">On-Page SEO</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:40%;background:var(--orange)"></div></div>
+          <span class="score-bar-val" style="color:var(--orange)">40</span>
+        </div>
+        <div class="score-bar-row">
+          <span class="score-bar-label">Schema / Dados Estruturados</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:15%;background:var(--red)"></div></div>
+          <span class="score-bar-val" style="color:var(--red)">15</span>
+        </div>
+        <div class="score-bar-row">
+          <span class="score-bar-label">Performance (CWV)</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:45%;background:var(--orange)"></div></div>
+          <span class="score-bar-val" style="color:var(--orange)">45</span>
+        </div>
+        <div class="score-bar-row">
+          <span class="score-bar-label">AI Search / GEO</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:20%;background:var(--red)"></div></div>
+          <span class="score-bar-val" style="color:var(--red)">20</span>
+        </div>
+        <div class="score-bar-row">
+          <span class="score-bar-label">Imagens</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:55%;background:var(--yellow)"></div></div>
+          <span class="score-bar-val" style="color:var(--yellow)">55</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TECHNICAL SEO ===================== -->
+  <div class="section-header" id="technical">
+    <div class="section-icon" style="background:var(--yellow-bg);color:var(--yellow)">⚙️</div>
+    <h2>Technical SEO</h2>
+    <div class="line"></div>
+    <span class="badge badge-warn">55/100</span>
+  </div>
+
+  <div class="cards-grid">
+    <!-- Crawlability -->
+    <div class="card card-sev sev-yellow animate">
+      <div class="card-header">
+        <div class="card-title">🕷️ Crawlability</div>
+        <div class="card-score warn">⚠️</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>robots.txt</td><td><span class="badge badge-warn">Crawl-delay: 15s</span></td></tr>
+        <tr><td>Sitemap declarado</td><td><span class="badge badge-good">✓ /pub/sitemap.xml</span></td></tr>
+        <tr><td>HTTPS</td><td><span class="badge badge-good">✓ Ativo</span></td></tr>
+        <tr><td>HTTP Version</td><td><span class="badge badge-good">✓ HTTP/3</span></td></tr>
+        <tr><td>Canonical tags</td><td><span class="badge badge-critical">✗ Não detectado</span></td></tr>
+        <tr><td>Redirect chains</td><td><span class="badge badge-good">✓ Sem redirecionamentos</span></td></tr>
+      </table>
+    </div>
+
+    <!-- Indexability -->
+    <div class="card card-sev sev-yellow animate">
+      <div class="card-header">
+        <div class="card-title">📑 Indexabilidade</div>
+        <div class="card-score warn">⚠️</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Meta robots</td><td><span class="badge badge-warn">Não detectado</span></td></tr>
+        <tr><td>Conteúdo duplicado</td><td><span class="badge badge-warn">Risco — sem canonical</span></td></tr>
+        <tr><td>Estrutura de URLs</td><td><span class="badge badge-good">✓ URLs limpas e descritivas</span></td></tr>
+        <tr><td>Sitemap URLs</td><td><span class="badge badge-good">~700 URLs</span></td></tr>
+        <tr><td>Lastmod datas</td><td><span class="badge badge-bad">Desatualizadas (2021-2022)</span></td></tr>
+      </table>
+    </div>
+
+    <!-- Security -->
+    <div class="card card-sev sev-green animate">
+      <div class="card-header">
+        <div class="card-title">🔒 Segurança</div>
+        <div class="card-score good">✅</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>HTTPS</td><td><span class="badge badge-good">✓ Ativo em todo site</span></td></tr>
+        <tr><td>X-Content-Type-Options</td><td><span class="badge badge-good">✓ nosniff</span></td></tr>
+        <tr><td>X-XSS-Protection</td><td><span class="badge badge-good">✓ 1; mode=block</span></td></tr>
+        <tr><td>X-Frame-Options</td><td><span class="badge badge-good">✓ SAMEORIGIN</span></td></tr>
+        <tr><td>CSP</td><td><span class="badge badge-warn">Report-only (não aplicado)</span></td></tr>
+        <tr><td>HSTS</td><td><span class="badge badge-critical">✗ Ausente</span></td></tr>
+      </table>
+    </div>
+
+    <!-- Server Performance -->
+    <div class="card card-sev sev-red animate">
+      <div class="card-header">
+        <div class="card-title">🖥️ Servidor</div>
+        <div class="card-score critical">❌</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>TTFB</td><td><span class="badge badge-critical">1.37s (meta: &lt;800ms)</span></td></tr>
+        <tr><td>Connection Time</td><td><span class="badge badge-good">42ms</span></td></tr>
+        <tr><td>Cache-Control</td><td><span class="badge badge-critical">no-cache, no-store</span></td></tr>
+        <tr><td>CDN</td><td><span class="badge badge-good">✓ Cloudflare</span></td></tr>
+        <tr><td>Compressão</td><td><span class="badge badge-good">✓ gzip/brotli (CF)</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== CONTENT QUALITY ===================== -->
+  <div class="section-header" id="content">
+    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">📝</div>
+    <h2>Qualidade de Conteúdo</h2>
+    <div class="line"></div>
+    <span class="badge badge-critical">35/100</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card-sev sev-red animate">
+      <div class="card-header">
+        <div class="card-title">🏗️ Estrutura de Headings</div>
+        <div class="card-score critical">❌</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>H1 na Homepage</td><td><span class="badge badge-critical">5+ tags H1</span></td></tr>
+        <tr><td>Hierarquia</td><td><span class="badge badge-bad">Inconsistente</span></td></tr>
+        <tr><td>Meta Description</td><td><span class="badge badge-critical">Não detectada</span></td></tr>
+      </table>
+      <p style="margin-top:12px;font-size:12px;color:var(--text-dim)">A homepage possui múltiplas tags H1 — deveria ter exatamente 1. Cada seção da categoria está marcada como H1 em vez de H2/H3.</p>
+    </div>
+
+    <div class="card card-sev sev-red animate">
+      <div class="card-header">
+        <div class="card-title">📄 Conteúdo das Categorias</div>
+        <div class="card-score critical">❌</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Texto descritivo</td><td><span class="badge badge-critical">Ausente</span></td></tr>
+        <tr><td>Páginas afetadas</td><td><span class="badge badge-bad">Todas as categorias</span></td></tr>
+        <tr><td>Impacto SEO</td><td><span class="badge badge-critical">Alto — thin content</span></td></tr>
+      </table>
+      <p style="margin-top:12px;font-size:12px;color:var(--text-dim)">Páginas de categoria como /produtos/medidor-de-ph não possuem nenhum texto descritivo. Recomendado: 150-300 palavras por categoria.</p>
+    </div>
+
+    <div class="card card-sev sev-yellow animate">
+      <div class="card-header">
+        <div class="card-title">🏆 E-E-A-T</div>
+        <div class="card-score warn">⚠️</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Experiência</td><td><span class="badge badge-good">35+ anos no mercado</span></td></tr>
+        <tr><td>Expertise</td><td><span class="badge badge-warn">Blog técnico existe</span></td></tr>
+        <tr><td>Autoridade</td><td><span class="badge badge-warn">Calibração RBC</span></td></tr>
+        <tr><td>Confiança</td><td><span class="badge badge-good">Endereço, telefone, WhatsApp</span></td></tr>
+        <tr><td>Atribuição de autor</td><td><span class="badge badge-bad">Ausente</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card card-sev sev-yellow animate">
+      <div class="card-header">
+        <div class="card-title">🌐 Idioma &amp; Localização</div>
+        <div class="card-score good">✅</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>HTML lang</td><td><span class="badge badge-good">✓ pt_BR</span></td></tr>
+        <tr><td>Conteúdo</td><td><span class="badge badge-good">✓ Português BR</span></td></tr>
+        <tr><td>hreflang</td><td><span class="badge badge-na">N/A — site monolíngue</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== ON-PAGE SEO ===================== -->
+  <div class="section-header" id="onpage">
+    <div class="section-icon" style="background:var(--orange-bg);color:var(--orange)">🏷️</div>
+    <h2>On-Page SEO</h2>
+    <div class="line"></div>
+    <span class="badge badge-bad">40/100</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card-sev sev-orange animate">
+      <div class="card-header">
+        <div class="card-title">🔤 Title Tags</div>
+        <div class="card-score bad">⚠️</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Homepage</td><td><span class="badge badge-warn">Não confirmado</span></td></tr>
+        <tr><td>Categoria exemplo</td><td><span class="badge badge-bad">"Medidor de PH - Produtos"</span></td></tr>
+        <tr><td>Problema</td><td style="color:var(--orange);font-size:11px">Genérico — falta marca e proposta de valor</td></tr>
+        <tr><td>Recomendação</td><td style="color:var(--text-muted);font-size:11px">"Medidor de pH | Compre Online - Instrutherm"</td></tr>
+      </table>
+    </div>
+
+    <div class="card card-sev sev-green animate">
+      <div class="card-header">
+        <div class="card-title">🔗 Links Internos</div>
+        <div class="card-score good">✅</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Links na homepage</td><td><span class="badge badge-good">150+ links internos</span></td></tr>
+        <tr><td>Navegação</td><td><span class="badge badge-good">40+ categorias</span></td></tr>
+        <tr><td>Breadcrumbs</td><td><span class="badge badge-good">✓ Presente</span></td></tr>
+        <tr><td>Paginação</td><td><span class="badge badge-good">✓ 12/24/36 por página</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card card-sev sev-green animate">
+      <div class="card-header">
+        <div class="card-title">🌐 URL Structure</div>
+        <div class="card-score good">✅</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Formato</td><td><span class="badge badge-good">✓ URLs limpas</span></td></tr>
+        <tr><td>Exemplo</td><td style="font-size:11px;color:var(--cyan)">/produtos/medidor-de-ph</td></tr>
+        <tr><td>Hierarquia</td><td><span class="badge badge-good">✓ Segmento/Categoria/Produto</span></td></tr>
+        <tr><td>Parâmetros filtrados</td><td><span class="badge badge-good">✓ Bloqueados no robots.txt</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== SCHEMA ===================== -->
+  <div class="section-header" id="schema">
+    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">🧩</div>
+    <h2>Schema / Dados Estruturados</h2>
+    <div class="line"></div>
+    <span class="badge badge-critical">15/100</span>
+  </div>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Esta é a <strong style="color:var(--red)">maior oportunidade perdida</strong> do site. Nenhum markup Schema.org foi detectado. Sites e-commerce se beneficiam enormemente de rich results de produto no Google.</p>
+
+  <div class="schema-grid">
+    <div class="schema-card animate">
+      <div class="icon">🏢</div>
+      <div class="name">Organization</div>
+      <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
+    </div>
+    <div class="schema-card animate">
+      <div class="icon">📦</div>
+      <div class="name">Product</div>
+      <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
+    </div>
+    <div class="schema-card animate">
+      <div class="icon">🧭</div>
+      <div class="name">BreadcrumbList</div>
+      <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
+    </div>
+    <div class="schema-card animate">
+      <div class="icon">🔎</div>
+      <div class="name">WebSite + Search</div>
+      <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
+    </div>
+    <div class="schema-card animate">
+      <div class="icon">📍</div>
+      <div class="name">LocalBusiness</div>
+      <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
+    </div>
+    <div class="schema-card animate">
+      <div class="icon">❓</div>
+      <div class="name">FAQPage</div>
+      <div class="status"><span class="badge badge-na">N/A — Não recomendado</span></div>
+    </div>
+  </div>
+
+  <!-- ===================== PERFORMANCE ===================== -->
+  <div class="section-header" id="performance">
+    <div class="section-icon" style="background:var(--orange-bg);color:var(--orange)">⚡</div>
+    <h2>Performance &amp; Core Web Vitals</h2>
+    <div class="line"></div>
+    <span class="badge badge-bad">45/100</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card-sev sev-red animate">
+      <div class="card-header">
+        <div class="card-title">🎯 Core Web Vitals</div>
+      </div>
+      <table class="audit-table">
+        <tr>
+          <td>LCP <span style="color:var(--text-dim);font-size:10px">(Largest Contentful Paint)</span></td>
+          <td><span class="badge badge-warn">Estimado: 2.5-4.0s</span></td>
+        </tr>
+        <tr>
+          <td>INP <span style="color:var(--text-dim);font-size:10px">(Interaction to Next Paint)</span></td>
+          <td><span class="badge badge-warn">Risco — 80+ JS modules</span></td>
+        </tr>
+        <tr>
+          <td>CLS <span style="color:var(--text-dim);font-size:10px">(Cumulative Layout Shift)</span></td>
+          <td><span class="badge badge-good">Mitigado — lazy load</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card card-sev sev-orange animate">
+      <div class="card-header">
+        <div class="card-title">📦 Recursos</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>JS Modules (RequireJS)</td><td><span class="badge badge-bad">80+ módulos</span></td></tr>
+        <tr><td>Lazy Loading</td><td><span class="badge badge-good">✓ mlazyload</span></td></tr>
+        <tr><td>Preload Hints</td><td><span class="badge badge-critical">✗ Ausente</span></td></tr>
+        <tr><td>HTTP/3</td><td><span class="badge badge-good">✓ Via Cloudflare</span></td></tr>
+        <tr><td>Compressão</td><td><span class="badge badge-good">✓ gzip/brotli</span></td></tr>
+        <tr><td>Page Caching</td><td><span class="badge badge-critical">✗ Desabilitado</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== AI / GEO ===================== -->
+  <div class="section-header" id="geo">
+    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">🤖</div>
+    <h2>AI Search &amp; GEO</h2>
+    <div class="line"></div>
+    <span class="badge badge-critical">20/100</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card-sev sev-red animate">
+      <div class="card-header">
+        <div class="card-title">🤖 AI Crawlers</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>GPTBot</td><td><span class="badge badge-warn">Sem política definida</span></td></tr>
+        <tr><td>ClaudeBot</td><td><span class="badge badge-warn">Sem política definida</span></td></tr>
+        <tr><td>PerplexityBot</td><td><span class="badge badge-warn">Sem política definida</span></td></tr>
+        <tr><td>Google-Extended</td><td><span class="badge badge-warn">Sem política definida</span></td></tr>
+        <tr><td>llms.txt</td><td><span class="badge badge-critical">✗ Não existe</span></td></tr>
+      </table>
+    </div>
+
+    <div class="card card-sev sev-red animate">
+      <div class="card-header">
+        <div class="card-title">📎 Citabilidade</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Passagens citáveis</td><td><span class="badge badge-critical">✗ Ausentes</span></td></tr>
+        <tr><td>Dados/Estatísticas</td><td><span class="badge badge-critical">✗ Sem dados estruturados</span></td></tr>
+        <tr><td>Padrões Q&A</td><td><span class="badge badge-critical">✗ Não encontrado</span></td></tr>
+        <tr><td>Consistência de marca</td><td><span class="badge badge-good">✓ "Instrutherm"</span></td></tr>
+        <tr><td>Conteúdo especializado</td><td><span class="badge badge-warn">Blog existe, não otimizado</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== IMAGES ===================== -->
+  <div class="section-header" id="images">
+    <div class="section-icon" style="background:var(--yellow-bg);color:var(--yellow)">🖼️</div>
+    <h2>Imagens</h2>
+    <div class="line"></div>
+    <span class="badge badge-warn">55/100</span>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card card-sev sev-yellow animate">
+      <div class="card-header">
+        <div class="card-title">🖼️ Otimização de Imagens</div>
+      </div>
+      <table class="audit-table">
+        <tr><td>Alt text (produtos)</td><td><span class="badge badge-good">✓ Presente e descritivo</span></td></tr>
+        <tr><td>Alt text (categorias)</td><td><span class="badge badge-warn">Incompleto</span></td></tr>
+        <tr><td>Lazy Loading</td><td><span class="badge badge-good">✓ Implementado</span></td></tr>
+        <tr><td>Formatos modernos</td><td><span class="badge badge-bad">Sem WebP/AVIF</span></td></tr>
+        <tr><td>Image Sitemap</td><td><span class="badge badge-critical">✗ Ausente</span></td></tr>
+        <tr><td>Imagens na homepage</td><td><span class="badge badge-info">40+ imagens</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== ACTION PLAN ===================== -->
+  <div class="section-header" id="actions">
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">🎯</div>
+    <h2>Plano de Ação Priorizado</h2>
+    <div class="line"></div>
+  </div>
+
+  <!-- Critical -->
+  <h3 style="color:var(--red);font-size:14px;margin:20px 0 12px;display:flex;align-items:center;gap:8px">
+    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--red)"></span>
+    CRÍTICO — Corrigir imediatamente
+  </h3>
+  <div class="action-list">
+    <div class="action-item animate">
+      <div class="action-num critical">1</div>
+      <div class="action-body">
+        <div class="action-title">Implementar Schema.org (JSON-LD)</div>
+        <div class="action-desc">Adicionar markup estruturado em todas as páginas: <strong>Organization</strong> (nome, logo, contato), <strong>Product</strong> (nome, preço, disponibilidade, imagem, marca, SKU) em cada produto, <strong>BreadcrumbList</strong> em páginas com breadcrumbs, e <strong>WebSite</strong> com SearchAction na homepage. Impacto: Rich results de produto no Google SERPs.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-med">Esforço: Médio</span>
+          <span class="action-tag impact-5">Impacto: ★★★★★</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num critical">2</div>
+      <div class="action-body">
+        <div class="action-title">Corrigir hierarquia de headings (H1)</div>
+        <div class="action-desc">A homepage possui 5+ tags H1. Cada página deve ter exatamente 1 H1 com a proposta de valor principal. As categorias na homepage devem usar H2/H3.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-4">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num critical">3</div>
+      <div class="action-body">
+        <div class="action-title">Adicionar meta descriptions únicas</div>
+        <div class="action-desc">Nenhuma meta description foi detectada na homepage ou páginas de categoria. Cada página precisa de uma descrição única e convincente (150-160 caracteres) para melhorar CTR nos resultados de busca.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-5">Impacto: ★★★★☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num critical">4</div>
+      <div class="action-body">
+        <div class="action-title">Adicionar tags canonical</div>
+        <div class="action-desc">Nenhuma tag canonical detectada. Cada página precisa de uma canonical self-referencing para prevenir conteúdo duplicado, especialmente crítico com os filtros de URL do Magento.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-5">Impacto: ★★★★☆</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- High -->
+  <h3 style="color:var(--orange);font-size:14px;margin:20px 0 12px;display:flex;align-items:center;gap:8px">
+    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--orange)"></span>
+    ALTO — Corrigir em até 1 semana
+  </h3>
+  <div class="action-list">
+    <div class="action-item animate">
+      <div class="action-num high">5</div>
+      <div class="action-body">
+        <div class="action-title">Reduzir Crawl-delay de 15s para 1s</div>
+        <div class="action-desc">O Crawl-delay de 15 segundos limita severamente o crawl budget do Google. Reduzir para 1s ou remover completamente permite ao Googlebot indexar o site muito mais rápido.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-4">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num high">6</div>
+      <div class="action-body">
+        <div class="action-title">Melhorar TTFB (Time to First Byte)</div>
+        <div class="action-desc">TTFB de 1.37s está muito acima da meta de &lt;800ms. Habilitar Full Page Cache do Magento, configurar Varnish ou Redis como backend de cache. Cache-Control está desabilitado (no-cache, no-store).</div>
+        <div class="action-meta">
+          <span class="action-tag effort-high">Esforço: Alto</span>
+          <span class="action-tag impact-5">Impacto: ★★★★☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num high">7</div>
+      <div class="action-body">
+        <div class="action-title">Criar conteúdo descritivo nas categorias</div>
+        <div class="action-desc">Todas as páginas de categoria estão sem texto descritivo (thin content). Adicionar 150-300 palavras por categoria explicando os tipos de produto, aplicações e guia de compra.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-med">Esforço: Médio</span>
+          <span class="action-tag impact-5">Impacto: ★★★★☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num high">8</div>
+      <div class="action-body">
+        <div class="action-title">Atualizar datas do Sitemap</div>
+        <div class="action-desc">Todas as datas lastmod são de 2021-2022. Atualizar para refletir as modificações reais das páginas. Sitemaps com datas desatualizadas perdem credibilidade com crawlers.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-4">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num high">9</div>
+      <div class="action-body">
+        <div class="action-title">Adicionar header HSTS</div>
+        <div class="action-desc">Configurar Strict-Transport-Security: max-age=31536000; includeSubDomains para forçar conexões HTTPS e melhorar segurança.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-4">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Medium -->
+  <h3 style="color:var(--yellow);font-size:14px;margin:20px 0 12px;display:flex;align-items:center;gap:8px">
+    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yellow)"></span>
+    MÉDIO — Corrigir em até 1 mês
+  </h3>
+  <div class="action-list">
+    <div class="action-item animate">
+      <div class="action-num medium">10</div>
+      <div class="action-body">
+        <div class="action-title">Converter imagens para WebP</div>
+        <div class="action-desc">Converter imagens de produtos para WebP com fallback JPEG para redução de 30-50% no tamanho dos arquivos.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-med">Esforço: Médio</span>
+          <span class="action-tag impact-3">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num medium">11</div>
+      <div class="action-body">
+        <div class="action-title">Adicionar preload hints para recursos críticos</div>
+        <div class="action-desc">Preload de CSS crítico, fontes e imagens hero para melhorar LCP e FCP.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-3">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num medium">12</div>
+      <div class="action-body">
+        <div class="action-title">Criar arquivo llms.txt</div>
+        <div class="action-desc">Adicionar /llms.txt com informações da empresa, categorias de produtos e páginas-chave para facilitar o acesso de crawlers de IA.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-3">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num medium">13</div>
+      <div class="action-body">
+        <div class="action-title">Definir política de AI crawlers no robots.txt</div>
+        <div class="action-desc">Permitir explicitamente GPTBot e ClaudeBot no robots.txt para aumentar visibilidade em buscas com IA.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-low">Esforço: Baixo</span>
+          <span class="action-tag impact-3">Impacto: ★★★☆☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num medium">14</div>
+      <div class="action-body">
+        <div class="action-title">Habilitar page caching</div>
+        <div class="action-desc">Remover no-cache/no-store para páginas estáticas e de categorias. Configurar cache headers adequados com Cloudflare.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-med">Esforço: Médio</span>
+          <span class="action-tag impact-4">Impacto: ★★★★☆</span>
+        </div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num medium">15</div>
+      <div class="action-body">
+        <div class="action-title">Ativar CSP (Content Security Policy)</div>
+        <div class="action-desc">CSP está em report-only. Migrar para modo enforced gradualmente para melhorar segurança.</div>
+        <div class="action-meta">
+          <span class="action-tag effort-med">Esforço: Médio</span>
+          <span class="action-tag impact-3">Impacto: ★★☆☆☆</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Low -->
+  <h3 style="color:var(--green);font-size:14px;margin:20px 0 12px;display:flex;align-items:center;gap:8px">
+    <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--green)"></span>
+    BAIXO — Backlog
+  </h3>
+  <div class="action-list">
+    <div class="action-item animate">
+      <div class="action-num low">16</div>
+      <div class="action-body">
+        <div class="action-title">Criar image sitemap</div>
+        <div class="action-desc">Sitemap dedicado para imagens de produtos, facilitando indexação no Google Images.</div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num low">17</div>
+      <div class="action-body">
+        <div class="action-title">Adicionar schema LocalBusiness</div>
+        <div class="action-desc">Markup para endereço físico/showroom em São Paulo, melhorando visibilidade em buscas locais.</div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num low">18</div>
+      <div class="action-body">
+        <div class="action-title">Otimizar blog para citação por IA</div>
+        <div class="action-desc">Adicionar conteúdo Q&A estruturado, estatísticas e citações de especialistas nos artigos do blog.</div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num low">19</div>
+      <div class="action-body">
+        <div class="action-title">Implementar IndexNow</div>
+        <div class="action-desc">Notificação automática de engines de busca quando conteúdo é atualizado.</div>
+      </div>
+    </div>
+    <div class="action-item animate">
+      <div class="action-num low">20</div>
+      <div class="action-body">
+        <div class="action-title">Remover headers HTTP duplicados</div>
+        <div class="action-desc">X-Content-Type-Options e X-XSS-Protection são enviados 2x. Limpar redundância.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== QUICK WINS ===================== -->
+  <div class="section-header" id="quickwins">
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">⚡</div>
+    <h2>Quick Wins</h2>
+    <div class="line"></div>
+  </div>
+
+  <table class="qw-table">
+    <thead>
+      <tr>
+        <th>Ação</th>
+        <th>Esforço</th>
+        <th>Impacto SEO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Implementar Product Schema (JSON-LD)</td>
+        <td><span class="badge badge-warn">Médio</span></td>
+        <td><span class="stars">★★★★★</span></td>
+      </tr>
+      <tr>
+        <td>Adicionar meta descriptions</td>
+        <td><span class="badge badge-good">Baixo</span></td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td>Adicionar tags canonical</td>
+        <td><span class="badge badge-good">Baixo</span></td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td>Corrigir hierarquia H1</td>
+        <td><span class="badge badge-good">Baixo</span></td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td>Reduzir crawl-delay</td>
+        <td><span class="badge badge-good">Baixo</span></td>
+        <td><span class="stars">★★★</span><span class="stars-dim">★★</span></td>
+      </tr>
+      <tr>
+        <td>Criar conteúdo de categorias</td>
+        <td><span class="badge badge-warn">Médio</span></td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+      <tr>
+        <td>Melhorar TTFB / caching</td>
+        <td><span class="badge badge-bad">Alto</span></td>
+        <td><span class="stars">★★★★</span><span class="stars-dim">★</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Footer -->
+  <footer class="footer">
+    Relatório gerado por <a href="#">Claude SEO Audit</a> &nbsp;·&nbsp; 12 de março de 2026 &nbsp;·&nbsp; instrutherm.com.br
+  </footer>
+
+</main>
+</div>
+
+<script>
+// Animate elements on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate').forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+
+// Smooth scroll for nav
+document.querySelectorAll('.nav-item').forEach(link => {
+  link.addEventListener('click', (e) => {
+    document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
