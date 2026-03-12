@@ -84,3 +84,24 @@ claude-seo-main/
 Cover Image.jpeg
 seo audit demo.gif
 seo command demo.gif
+
+# Reference images (downloaded for design reference, not part of project)
+seo-reference.jpg
+
+# Environment & Secrets (AIOX)
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Dependencies (AIOX)
+node_modules
+
+# Build & Logs (AIOX)
+logs/
+
+# AIOX Local (AIOX)
+.aiox-core/local/
+.claude/settings.local.json
+.aiox/install-log.txt
