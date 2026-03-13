@@ -38,17 +38,17 @@
   --radius-sm:6px;
   --radius-xs:4px;
 }
-html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+html{scroll-behavior:smooth;height:100%}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;width:100%;min-height:100vh}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--text-dim)}
 
 /* Layout */
-.app{display:flex;min-height:100vh}
+.app{display:flex;min-height:100vh;width:100%}
 .sidebar{width:260px;background:var(--surface);border-right:1px solid var(--border);padding:24px 16px;position:fixed;top:0;left:0;height:100vh;overflow-y:auto;z-index:100;display:flex;flex-direction:column}
-.main{margin-left:260px;flex:1;padding:32px 40px;max-width:1200px}
+.main{margin-left:260px;flex:1;padding:32px 40px;width:calc(100% - 260px)}
 
 /* Sidebar */
 .logo{display:flex;align-items:center;gap:10px;padding:0 8px 24px;border-bottom:1px solid var(--border);margin-bottom:20px}
@@ -278,7 +278,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 /* Responsive */
 @media(max-width:1024px){
   .sidebar{display:none}
-  .main{margin-left:0;padding:20px}
+  .main{margin-left:0;padding:20px;width:100%}
   .score-hero{flex-direction:column;text-align:center}
   .score-bar-label{width:120px}
   .cards-grid{grid-template-columns:1fr}
@@ -1419,6 +1419,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <span class="badge badge-warn">55/100</span>
   </div>
 
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">O SEO técnico apresenta uma <strong style="color:var(--yellow)">base funcional com falhas estruturais importantes</strong>. Os pontos positivos incluem HTTPS ativo, HTTP/3 via Cloudflare, URLs limpas e compressão gzip/brotli. Porém, a <strong style="color:var(--red)">ausência de canonical tags</strong> cria risco de conteúdo duplicado, o <strong style="color:var(--red)">TTFB de 1.37s</strong> está 71% acima da meta de 800ms, e o <strong style="color:var(--red)">cache está completamente desabilitado</strong> (no-cache, no-store). O crawl-delay de 15s no robots.txt também limita a velocidade de indexação do Googlebot. Segurança está boa com headers de proteção, mas falta HSTS.</p>
+
   <div class="cards-grid">
     <!-- Crawlability -->
     <div class="card card-sev sev-yellow animate">
@@ -1491,6 +1493,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <span class="badge badge-critical">35/100</span>
   </div>
 
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">O conteúdo é o <strong style="color:var(--red)">ponto mais fraco do site ao lado de Schema</strong>. A homepage possui <strong style="color:var(--red)">5+ tags H1</strong> quando deveria ter exatamente 1, e nenhuma meta description foi detectada. As páginas de categoria são classificadas como <strong style="color:var(--red)">thin content</strong> — não possuem nenhum texto descritivo, desperdiçando oportunidades de rankeamento. O E-E-A-T é parcialmente atendido pela experiência de 35+ anos e presença de contato, mas falta atribuição de autoria no blog e conteúdo especializado estruturado.</p>
+
   <div class="cards-grid">
     <div class="card card-sev sev-red animate">
       <div class="card-header">
@@ -1552,6 +1556,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <div class="line"></div>
     <span class="badge badge-bad">40/100</span>
   </div>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">O On-Page SEO é um <strong style="color:var(--orange)">misto de boas práticas e oportunidades perdidas</strong>. A estrutura de URLs é exemplar (/produtos/medidor-de-ph), os links internos são abundantes (150+), breadcrumbs estão presentes e a paginação funciona corretamente. No entanto, os <strong style="color:var(--orange)">title tags são genéricos</strong> — "Medidor de PH - Produtos" não inclui marca nem proposta de valor. Corrigir os titles para incluir "Instrutherm" e CTAs como "Compre Online" é um quick win de alto impacto.</p>
 
   <div class="cards-grid">
     <div class="card card-sev sev-orange animate">
@@ -1645,6 +1651,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <span class="badge badge-bad">45/100</span>
   </div>
 
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">A performance é comprometida principalmente pelo <strong style="color:var(--red)">excesso de JavaScript</strong> — são <strong style="color:var(--red)">80+ módulos RequireJS</strong> carregados na homepage, impactando diretamente o INP e o LCP (estimado entre 2.5-4.0s). O <strong style="color:var(--red)">cache de página está desabilitado</strong>, forçando o servidor a processar cada request do zero. Os pontos positivos são o lazy loading implementado, HTTP/3 via Cloudflare e compressão brotli. Habilitar Full Page Cache do Magento 2 e adicionar preload hints seriam as correções de maior impacto.</p>
+
   <div class="cards-grid">
     <div class="card card-sev sev-red animate">
       <div class="card-header">
@@ -1689,6 +1697,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <span class="badge badge-critical">20/100</span>
   </div>
 
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">O site está <strong style="color:var(--red)">completamente despreparado para AI Search</strong>. Nenhum crawler de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended) possui política definida no robots.txt, e não existe arquivo <strong style="color:var(--red)">llms.txt</strong> para orientar modelos de linguagem. A citabilidade é crítica: não há passagens citáveis estruturadas, dados/estatísticas formatados, nem padrões Q&A que facilitem citação por assistentes de IA. O único ponto positivo é a consistência da marca "Instrutherm". Em um cenário onde o tráfego de AI Search cresce exponencialmente, esta é uma área que demanda atenção imediata.</p>
+
   <div class="cards-grid">
     <div class="card card-sev sev-red animate">
       <div class="card-header">
@@ -1724,6 +1734,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <div class="line"></div>
     <span class="badge badge-warn">55/100</span>
   </div>
+
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">As imagens estão em um <strong style="color:var(--yellow)">nível intermediário de otimização</strong>. Os alt texts dos produtos são descritivos e o lazy loading está implementado — ambos positivos. Porém, o site <strong style="color:var(--orange)">não utiliza formatos modernos</strong> como WebP ou AVIF, que podem reduzir o tamanho dos arquivos em 30-50%. Também <strong style="color:var(--red)">não existe Image Sitemap</strong>, limitando a descoberta de imagens pelo Google Images — um canal relevante para e-commerce de produtos técnicos onde compradores frequentemente buscam por imagens de equipamentos.</p>
 
   <div class="cards-grid">
     <div class="card card-sev sev-yellow animate">
