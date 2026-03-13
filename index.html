@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEO Audit Reports — GuessLess</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -32,142 +33,299 @@
   --blue:#93C5FD;
   --blue-bg:rgba(147,197,253,.08);
   --cyan:#67E8F9;
+  --cyan-bg:rgba(103,232,249,.08);
   --radius:12px;
   --radius-sm:6px;
+  --radius-xs:4px;
+  --radius-full:9999px;
+  --space-xs:4px;
+  --space-sm:8px;
+  --space-md:16px;
+  --space-lg:24px;
+  --space-xl:32px;
+  --space-2xl:48px;
+  --space-3xl:64px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+a{text-decoration:none;color:inherit}
 
-.container{max-width:900px;width:100%;padding:80px 24px 48px}
+/* Layout */
+.container{max-width:960px;width:100%;margin:0 auto;padding:0 var(--space-lg)}
 
-/* Header */
-.hub-header{text-align:center;margin-bottom:64px}
-.hub-brand{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;padding:8px 20px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface)}
+/* ═══ Header ═══ */
+.hub-header{text-align:center;padding:var(--space-3xl) var(--space-lg) var(--space-2xl)}
+.hub-brand{display:inline-flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-lg);padding:var(--space-sm) var(--space-md);border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
 .hub-brand-mark{width:8px;height:8px;background:var(--accent);border-radius:2px}
 .hub-brand-text{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted)}
 .hub-brand-text strong{color:var(--accent);font-weight:700}
-.hub-header h1{font-family:'DM Serif Display',Georgia,serif;font-size:40px;font-weight:400;letter-spacing:-.5px;margin-bottom:12px;color:var(--text)}
+.hub-header h1{font-family:'DM Serif Display',Georgia,serif;font-size:32px;font-weight:400;letter-spacing:-.5px;margin-bottom:var(--space-sm);color:var(--text)}
 .hub-header h1 span{color:var(--accent)}
-.hub-subtitle{font-size:14px;color:var(--text-muted);max-width:480px;margin:0 auto;line-height:1.7}
-.hub-tagline{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:2px;margin-top:16px;font-weight:500}
+.hub-subtitle{font-size:13.5px;color:var(--text-muted);max-width:460px;margin:0 auto;line-height:1.7}
+.hub-tagline{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:2.5px;margin-top:var(--space-md);font-weight:600}
 
-/* Site Cards Grid */
-.sites-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:24px;margin-bottom:64px}
+/* ═══ Stats Bar ═══ */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:var(--space-2xl)}
+.stat-item{background:var(--card);padding:20px var(--space-md);text-align:center;display:flex;flex-direction:column;align-items:center;gap:var(--space-xs)}
+.stat-icon{color:var(--text-dim);margin-bottom:2px}
+.stat-icon i{width:16px;height:16px}
+.stat-value{font-size:24px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+.stat-value.accent{color:var(--accent)}
+.stat-value.green{color:var(--green)}
+.stat-value.orange{color:var(--orange)}
+.stat-value.red{color:var(--red)}
+.stat-label{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
 
-.site-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:all .3s;text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden}
-.site-card:hover{border-color:var(--accent);background:var(--card-hover);transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,169,110,.06)}
+/* ═══ Section Title ═══ */
+.section-title{display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-lg)}
+.section-title h2{font-family:'DM Serif Display',Georgia,serif;font-size:22px;font-weight:400;letter-spacing:-.3px;white-space:nowrap}
+.section-title .line{flex:1;height:1px;background:var(--border)}
 
-.site-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.site-card-name{font-family:'DM Serif Display',Georgia,serif;font-size:20px;font-weight:400}
-.site-card-score{font-size:32px;font-weight:800;font-family:'Inter',sans-serif}
-.site-card-score.score-good{color:var(--green)}
-.site-card-score.score-warn{color:var(--yellow)}
-.site-card-score.score-bad{color:var(--orange)}
-.site-card-score.score-critical{color:var(--red)}
+/* ═══ Client Card ═══ */
+.clients-grid{display:grid;grid-template-columns:1fr;gap:var(--space-lg);margin-bottom:var(--space-3xl)}
 
-.site-card-url{font-size:13px;color:var(--accent);margin-bottom:16px;display:block;letter-spacing:.3px}
+.client-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all 250ms ease;position:relative}
+.client-card:hover{border-color:var(--border-accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
 
-.site-card-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.site-card-chip{display:inline-flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--border);padding:4px 12px;border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted);font-weight:500}
-.site-card-chip .dot{width:5px;height:5px;border-radius:2px;flex-shrink:0}
+.client-card-top{display:flex;gap:var(--space-lg);padding:var(--space-lg);align-items:flex-start}
 
-/* Score bar */
-.site-score-bar{margin-top:20px}
-.site-score-bar-label{display:flex;justify-content:space-between;font-size:10px;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
-.site-score-bar-track{width:100%;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
-.site-score-bar-fill{height:100%;border-radius:3px;transition:width 1.2s ease}
+/* Score Ring */
+.score-ring-wrap{position:relative;width:96px;height:96px;flex-shrink:0}
+.score-ring-wrap svg{transform:rotate(-90deg);width:96px;height:96px}
+.score-ring-bg{fill:none;stroke:var(--border);stroke-width:7}
+.score-ring-fill{fill:none;stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease}
+.score-ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.score-ring-text .num{font-size:26px;font-weight:700;font-family:'JetBrains Mono',monospace;line-height:1}
+.score-ring-text .lbl{font-size:9px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-top:2px;font-weight:500}
 
-.site-card-date{font-size:11px;color:var(--text-dim);margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
+.client-info{flex:1;min-width:0}
+.client-name{font-family:'DM Serif Display',Georgia,serif;font-size:22px;font-weight:400;letter-spacing:-.3px;margin-bottom:2px}
+.client-url{font-size:12px;color:var(--accent);letter-spacing:.3px;margin-bottom:var(--space-sm);display:block;font-weight:500}
+.client-desc{font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6}
+.client-chips{display:flex;gap:var(--space-xs);flex-wrap:wrap}
+.client-chip{display:inline-flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--border);padding:3px 10px;border-radius:var(--radius-full);font-size:11px;color:var(--text-muted);font-weight:500}
+.client-chip .dot{width:5px;height:5px;border-radius:var(--radius-full);flex-shrink:0}
 
-.site-card-arrow{position:absolute;top:32px;right:32px;font-size:16px;color:var(--text-dim);transition:all .3s}
-.site-card:hover .site-card-arrow{color:var(--accent);transform:translateX(4px)}
+.client-arrow{position:absolute;top:var(--space-lg);right:var(--space-lg);color:var(--text-dim);transition:all 250ms ease}
+.client-card:hover .client-arrow{color:var(--accent);transform:translateX(3px)}
 
-/* Footer */
-.hub-footer{text-align:center;padding:32px 0;border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);letter-spacing:.3px}
-.hub-footer a{color:var(--accent);text-decoration:none}
+/* Sub-scores */
+.client-card-scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;padding:0 var(--space-lg) var(--space-lg);margin-top:var(--space-xs)}
+.sub-score{display:flex;flex-direction:column;gap:var(--space-xs)}
+.sub-score-header{display:flex;align-items:center;justify-content:space-between}
+.sub-score-name{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;font-weight:600;display:flex;align-items:center;gap:4px}
+.sub-score-name i{width:11px;height:11px;opacity:.6}
+.sub-score-val{font-size:11px;font-weight:600;font-family:'JetBrains Mono',monospace}
+.sub-score-track{width:100%;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.sub-score-fill{height:100%;border-radius:2px;transition:width 1.2s ease}
+
+/* Card footer */
+.client-card-footer{display:flex;align-items:center;justify-content:space-between;padding:12px var(--space-lg);border-top:1px solid var(--border)}
+.client-date{font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:var(--space-xs);font-weight:500}
+.client-date i{width:12px;height:12px;opacity:.6}
+.client-cta{font-size:12px;font-weight:600;color:var(--accent);display:flex;align-items:center;gap:var(--space-xs);transition:gap 250ms ease}
+.client-card:hover .client-cta{gap:var(--space-sm)}
+.client-cta i{width:14px;height:14px}
+
+/* ═══ Footer ═══ */
+.hub-footer{text-align:center;padding:var(--space-xl) var(--space-lg);border-top:1px solid var(--border);font-size:11px;color:var(--text-dim);letter-spacing:.3px;margin-top:auto}
 .hub-footer-brand{font-weight:600;color:var(--text-muted)}
 
-/* Responsive */
-@media(max-width:500px){
-  .sites-grid{grid-template-columns:1fr}
-  .hub-header h1{font-size:30px}
-  .container{padding:40px 16px 24px}
+/* ═══ Responsive ═══ */
+@media(max-width:640px){
+  .hub-header h1{font-size:26px}
+  .hub-header{padding:var(--space-2xl) var(--space-md) var(--space-xl)}
+  .container{padding:0 var(--space-md)}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .client-card-top{flex-direction:column;gap:var(--space-md);align-items:center;text-align:center}
+  .client-chips{justify-content:center}
+  .client-card-scores{grid-template-columns:repeat(2,1fr);padding:0 var(--space-md) var(--space-md)}
+  .client-card-footer{padding:12px var(--space-md)}
+  .client-card-top{padding:var(--space-md)}
+  .client-arrow{top:var(--space-md);right:var(--space-md)}
 }
 
-/* Animations */
-@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.animate{animation:fadeInUp .6s ease forwards;opacity:0}
-.animate:nth-child(1){animation-delay:.1s}
-.animate:nth-child(2){animation-delay:.2s}
-.animate:nth-child(3){animation-delay:.3s}
+/* ═══ Animations ═══ */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.animate{animation:fadeInUp .5s ease forwards;opacity:0}
+.delay-1{animation-delay:.05s}
+.delay-2{animation-delay:.1s}
+.delay-3{animation-delay:.2s}
+.delay-4{animation-delay:.3s}
 </style>
 </head>
 <body>
 
+<!-- Header -->
+<header class="hub-header">
+  <div class="hub-brand animate delay-1">
+    <div class="hub-brand-mark"></div>
+    <div class="hub-brand-text"><strong>Guess</strong>Less</div>
+  </div>
+  <h1 class="animate delay-1">SEO Audit <span>Reports</span></h1>
+  <p class="hub-subtitle animate delay-2">Auditorias completas de SEO com análise técnica, oportunidades de negócio e plano de ação priorizado para crescimento previsível.</p>
+  <div class="hub-tagline animate delay-2">Direção · Dados · Execução</div>
+</header>
+
 <div class="container">
 
-  <!-- Header -->
-  <header class="hub-header animate">
-    <div class="hub-brand">
-      <div class="hub-brand-mark"></div>
-      <div class="hub-brand-text"><strong>Guess</strong>Less</div>
+  <!-- Stats Bar -->
+  <div class="stats-bar animate delay-2">
+    <div class="stat-item">
+      <div class="stat-icon"><i data-lucide="building-2"></i></div>
+      <div class="stat-value accent">1</div>
+      <div class="stat-label">Clientes</div>
     </div>
-    <h1>SEO Audit <span>Reports</span></h1>
-    <p class="hub-subtitle">Auditorias completas de SEO com análise técnica, oportunidades de negócio e plano de ação priorizado para crescimento previsível.</p>
-    <div class="hub-tagline">Direção · Dados · Execução</div>
-  </header>
+    <div class="stat-item">
+      <div class="stat-icon"><i data-lucide="activity"></i></div>
+      <div class="stat-value orange">48</div>
+      <div class="stat-label">Score Médio</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon"><i data-lucide="globe"></i></div>
+      <div class="stat-value accent">~700</div>
+      <div class="stat-label">URLs Analisadas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon"><i data-lucide="alert-triangle"></i></div>
+      <div class="stat-value red">23</div>
+      <div class="stat-label">Issues Críticas</div>
+    </div>
+  </div>
 
-  <!-- Sites Grid -->
-  <div class="sites-grid">
+  <!-- Section Title -->
+  <div class="section-title animate delay-3">
+    <h2>Clientes</h2>
+    <div class="line"></div>
+  </div>
+
+  <!-- Clients Grid -->
+  <div class="clients-grid">
 
     <!-- Instrutherm -->
-    <a href="./instrutherm/" class="site-card animate">
-      <span class="site-card-arrow">→</span>
-      <div class="site-card-header">
-        <div class="site-card-name">Instrutherm</div>
-        <div class="site-card-score score-bad">48</div>
-      </div>
-      <span class="site-card-url">instrutherm.com.br</span>
-      <div class="site-card-meta">
-        <span class="site-card-chip"><span class="dot" style="background:var(--green)"></span> E-commerce</span>
-        <span class="site-card-chip"><span class="dot" style="background:var(--accent)"></span> Magento 2</span>
-        <span class="site-card-chip"><span class="dot" style="background:var(--cyan)"></span> Cloudflare</span>
-        <span class="site-card-chip"><span class="dot" style="background:var(--yellow)"></span> pt-BR</span>
-      </div>
-      <div class="site-score-bar">
-        <div class="site-score-bar-label">
-          <span>Health Score</span>
-          <span>48 / 100</span>
+    <a href="./instrutherm/" class="client-card animate delay-3">
+      <span class="client-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px"></i></span>
+
+      <div class="client-card-top">
+        <div class="score-ring-wrap">
+          <svg viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="grad-instrutherm" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FB923C"/>
+                <stop offset="100%" stop-color="#FBBF24"/>
+              </linearGradient>
+            </defs>
+            <circle class="score-ring-bg" cx="60" cy="60" r="50"/>
+            <circle class="score-ring-fill" cx="60" cy="60" r="50"
+              stroke="url(#grad-instrutherm)"
+              stroke-dasharray="314.16"
+              stroke-dashoffset="163.36"/>
+          </svg>
+          <div class="score-ring-text">
+            <div class="num" style="color:var(--orange)">48</div>
+            <div class="lbl">/ 100</div>
+          </div>
         </div>
-        <div class="site-score-bar-track">
-          <div class="site-score-bar-fill" style="width:48%;background:linear-gradient(90deg,var(--orange),var(--yellow))"></div>
+
+        <div class="client-info">
+          <div class="client-name">Instrutherm</div>
+          <span class="client-url">instrutherm.com.br</span>
+          <p class="client-desc">Instrumentos de medição e controle — líder brasileiro com 35+ anos de mercado, ~700 URLs indexadas no Google.</p>
+          <div class="client-chips">
+            <span class="client-chip"><span class="dot" style="background:var(--green)"></span> E-commerce</span>
+            <span class="client-chip"><span class="dot" style="background:var(--accent)"></span> Magento 2</span>
+            <span class="client-chip"><span class="dot" style="background:var(--cyan)"></span> Cloudflare</span>
+            <span class="client-chip"><span class="dot" style="background:var(--yellow)"></span> pt-BR</span>
+          </div>
         </div>
       </div>
-      <div class="site-card-date">12 de março de 2026 &nbsp;·&nbsp; Instrumentos de Medição &nbsp;·&nbsp; 35+ anos de mercado</div>
+
+      <!-- Sub-scores -->
+      <div class="client-card-scores">
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="settings"></i> Technical</span>
+            <span class="sub-score-val" style="color:var(--yellow)">55</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:55%;background:var(--yellow)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="file-text"></i> Conteúdo</span>
+            <span class="sub-score-val" style="color:var(--red)">35</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:35%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="tag"></i> On-Page</span>
+            <span class="sub-score-val" style="color:var(--orange)">40</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:40%;background:var(--orange)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="puzzle"></i> Schema</span>
+            <span class="sub-score-val" style="color:var(--red)">15</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:15%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="zap"></i> Performance</span>
+            <span class="sub-score-val" style="color:var(--orange)">45</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:45%;background:var(--orange)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="bot"></i> AI / GEO</span>
+            <span class="sub-score-val" style="color:var(--red)">20</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:20%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="image"></i> Imagens</span>
+            <span class="sub-score-val" style="color:var(--yellow)">55</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:55%;background:var(--yellow)"></div></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="client-card-footer">
+        <span class="client-date"><i data-lucide="calendar"></i> 12 de março de 2026</span>
+        <span class="client-cta">Ver relatório completo <i data-lucide="arrow-right"></i></span>
+      </div>
     </a>
+
+    <!-- ═══ Para adicionar novos clientes, duplique o bloco acima e ajuste os dados ═══ -->
 
   </div>
 
-  <!-- Footer -->
-  <footer class="hub-footer">
-    Powered by <span class="hub-footer-brand"><strong>Guess</strong>Less</span> — Growth Agency &nbsp;·&nbsp; Relatórios gerados com análise automatizada de IA
-  </footer>
-
 </div>
 
+<!-- Footer -->
+<footer class="hub-footer">
+  Powered by <span class="hub-footer-brand"><strong>Guess</strong>Less</span> — Growth Agency &nbsp;·&nbsp; Relatórios gerados com análise automatizada de IA
+</footer>
+
 <script>
+// Animate on scroll
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
-  });
+  entries.forEach(e => { if (e.isIntersecting) e.target.style.animationPlayState = 'running'; });
 }, { threshold: 0.1 });
 document.querySelectorAll('.animate').forEach(el => {
   el.style.animationPlayState = 'paused';
   observer.observe(el);
 });
+
+// Lucide
+lucide.createIcons();
 </script>
 </body>
 </html>

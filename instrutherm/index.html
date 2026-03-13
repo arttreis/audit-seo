@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEO Audit — instrutherm.com.br | GuessLess</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -301,6 +302,19 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 .animate:nth-child(5){animation-delay:.25s}
 .animate:nth-child(6){animation-delay:.3s}
 .animate:nth-child(7){animation-delay:.35s}
+
+/* Lucide icons */
+.icon i, .deliverable-icon i, .opp-card-icon i, .schema-card .icon i, .section-icon i, .scope-result-icon i, .card-title i {
+  display: inline-block;
+  vertical-align: middle;
+}
+.nav-item .icon i { width:16px; height:16px; }
+.deliverable-icon i { width:16px; height:16px; }
+.section-icon i { width:18px; height:18px; }
+.opp-card-icon i { width:28px; height:28px; }
+.schema-card .icon i { width:24px; height:24px; }
+.scope-result-icon i { width:28px; height:28px; }
+.card-score i { width:18px; height:18px; }
 </style>
 </head>
 <body>
@@ -309,36 +323,36 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 <!-- Sidebar -->
 <aside class="sidebar">
   <div class="logo">
-    <div class="logo-icon">◆</div>
+    <div class="logo-icon"><i data-lucide="diamond" style="width:16px;height:16px;color:#08080C"></i></div>
     <div class="logo-text"><span>Guess</span>Less</div>
   </div>
 
   <nav>
     <div class="nav-section">
       <div class="nav-label">Overview</div>
-      <a href="#score" class="nav-item active"><span class="icon">📊</span> Health Score <span class="nav-badge warn">48</span></a>
-      <a href="#executive" class="nav-item"><span class="icon">📋</span> Resumo Executivo</a>
+      <a href="#score" class="nav-item active"><span class="icon"><i data-lucide="bar-chart-3"></i></span> Health Score <span class="nav-badge warn">48</span></a>
+      <a href="#executive" class="nav-item"><span class="icon"><i data-lucide="clipboard-list"></i></span> Resumo Executivo</a>
     </div>
     <div class="nav-section">
       <div class="nav-label">Proposta</div>
-      <a href="#investment" class="nav-item"><span class="icon">💰</span> Escopo & Investimento</a>
-      <a href="#opportunities" class="nav-item"><span class="icon">🚀</span> Oportunidades</a>
-      <a href="#keywords" class="nav-item"><span class="icon">🔑</span> Palavras-Chave</a>
+      <a href="#investment" class="nav-item"><span class="icon"><i data-lucide="coins"></i></span> Escopo & Investimento</a>
+      <a href="#opportunities" class="nav-item"><span class="icon"><i data-lucide="rocket"></i></span> Oportunidades</a>
+      <a href="#keywords" class="nav-item"><span class="icon"><i data-lucide="key-round"></i></span> Palavras-Chave</a>
     </div>
     <div class="nav-section">
       <div class="nav-label">Ações</div>
-      <a href="#actions" class="nav-item"><span class="icon">🎯</span> Plano de Ação</a>
-      <a href="#quickwins" class="nav-item"><span class="icon">⚡</span> Quick Wins</a>
+      <a href="#actions" class="nav-item"><span class="icon"><i data-lucide="target"></i></span> Plano de Ação</a>
+      <a href="#quickwins" class="nav-item"><span class="icon"><i data-lucide="zap"></i></span> Quick Wins</a>
     </div>
     <div class="nav-section">
       <div class="nav-label">Detalhes Técnicos</div>
-      <a href="#technical" class="nav-item"><span class="icon">⚙️</span> Technical SEO <span class="nav-badge warn">55</span></a>
-      <a href="#content" class="nav-item"><span class="icon">📝</span> Conteúdo <span class="nav-badge">35</span></a>
-      <a href="#onpage" class="nav-item"><span class="icon">🏷️</span> On-Page SEO <span class="nav-badge">40</span></a>
-      <a href="#schema" class="nav-item"><span class="icon">🧩</span> Schema <span class="nav-badge">15</span></a>
-      <a href="#performance" class="nav-item"><span class="icon">⚡</span> Performance <span class="nav-badge warn">45</span></a>
-      <a href="#geo" class="nav-item"><span class="icon">🤖</span> AI / GEO <span class="nav-badge">20</span></a>
-      <a href="#images" class="nav-item"><span class="icon">🖼️</span> Imagens <span class="nav-badge ok">55</span></a>
+      <a href="#technical" class="nav-item"><span class="icon"><i data-lucide="settings"></i></span> Technical SEO <span class="nav-badge warn">55</span></a>
+      <a href="#content" class="nav-item"><span class="icon"><i data-lucide="file-text"></i></span> Conteúdo <span class="nav-badge">35</span></a>
+      <a href="#onpage" class="nav-item"><span class="icon"><i data-lucide="tag"></i></span> On-Page SEO <span class="nav-badge">40</span></a>
+      <a href="#schema" class="nav-item"><span class="icon"><i data-lucide="puzzle"></i></span> Schema <span class="nav-badge">15</span></a>
+      <a href="#performance" class="nav-item"><span class="icon"><i data-lucide="zap"></i></span> Performance <span class="nav-badge warn">45</span></a>
+      <a href="#geo" class="nav-item"><span class="icon"><i data-lucide="bot"></i></span> AI / GEO <span class="nav-badge">20</span></a>
+      <a href="#images" class="nav-item"><span class="icon"><i data-lucide="image"></i></span> Imagens <span class="nav-badge ok">55</span></a>
     </div>
   </nav>
 
@@ -434,7 +448,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== RESUMO EXECUTIVO ===================== -->
   <div class="section-header" id="executive">
-    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">📋</div>
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)"><i data-lucide="clipboard-list"></i></div>
     <h2>Resumo Executivo</h2>
     <div class="line"></div>
   </div>
@@ -462,7 +476,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== INVESTIMENTO & ESCOPO ===================== -->
   <div class="section-header" id="investment">
-    <div class="section-icon" style="background:var(--blue-bg);color:var(--blue)">💰</div>
+    <div class="section-icon" style="background:var(--blue-bg);color:var(--blue)"><i data-lucide="coins"></i></div>
     <h2>Escopo do Projeto & Investimento</h2>
     <div class="line"></div>
   </div>
@@ -507,56 +521,56 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
       <div class="scope-section-title">Entregáveis</div>
       <div class="deliverable-grid">
         <div class="deliverable-item">
-          <span class="deliverable-icon">🧩</span>
+          <span class="deliverable-icon"><i data-lucide="puzzle"></i></span>
           <div class="deliverable-text">
             <strong>Schema.org Básico (JSON-LD)</strong>
             <span>Organization + Product em páginas de produto + BreadcrumbList. Rich results no Google.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🏷️</span>
+          <span class="deliverable-icon"><i data-lucide="tag"></i></span>
           <div class="deliverable-text">
             <strong>Tags Canonical em Todas as Páginas</strong>
             <span>Self-referencing canonicals para eliminar conteúdo duplicado no Magento.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📝</span>
+          <span class="deliverable-icon"><i data-lucide="file-text"></i></span>
           <div class="deliverable-text">
             <strong>Meta Descriptions (Top 30 Páginas)</strong>
             <span>Descrições únicas e persuasivas para homepage, categorias principais e produtos top.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🏗️</span>
+          <span class="deliverable-icon"><i data-lucide="building"></i></span>
           <div class="deliverable-text">
             <strong>Correção de Hierarquia H1</strong>
             <span>1 H1 por página. Categorias da homepage movidas para H2/H3.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🕷️</span>
+          <span class="deliverable-icon"><i data-lucide="bug"></i></span>
           <div class="deliverable-text">
             <strong>Otimização do robots.txt</strong>
             <span>Crawl-delay de 15s → 1s. Políticas de AI crawlers (GPTBot, ClaudeBot).</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🗺️</span>
+          <span class="deliverable-icon"><i data-lucide="map"></i></span>
           <div class="deliverable-text">
             <strong>Atualização do Sitemap</strong>
             <span>Correção das datas lastmod (2021-2022 → atuais). Validação de URLs.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📊</span>
+          <span class="deliverable-icon"><i data-lucide="bar-chart-3"></i></span>
           <div class="deliverable-text">
             <strong>Relatório de Keyword Research</strong>
             <span>Mapeamento de 50+ keywords com volume, dificuldade e priorização.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📋</span>
+          <span class="deliverable-icon"><i data-lucide="clipboard-list"></i></span>
           <div class="deliverable-text">
             <strong>Documento de Specs Técnicas</strong>
             <span>Specs detalhadas para cada implementação, prontas para o dev executar.</span>
@@ -578,7 +592,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     </div>
 
     <div class="scope-result">
-      <div class="scope-result-icon">🎯</div>
+      <div class="scope-result-icon"><i data-lucide="target"></i></div>
       <div class="scope-result-text">
         <strong>Resultado Esperado</strong>
         <span>Rich results de produtos no Google, eliminação de conteúdo duplicado, crawl 15x mais rápido. Primeiros resultados visíveis em 4-6 semanas.</span>
@@ -603,70 +617,70 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
       <div class="scope-section-title">Entregáveis — Tudo do Essencial +</div>
       <div class="deliverable-grid">
         <div class="deliverable-item">
-          <span class="deliverable-icon">📄</span>
+          <span class="deliverable-icon"><i data-lucide="file"></i></span>
           <div class="deliverable-text">
             <strong>Conteúdo para 20 Categorias Principais</strong>
             <span>Textos descritivos de 200-300 palavras por categoria com keywords otimizadas. Foco nas categorias de maior volume.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📝</span>
+          <span class="deliverable-icon"><i data-lucide="file-text"></i></span>
           <div class="deliverable-text">
             <strong>Meta Descriptions (Todas as Páginas)</strong>
             <span>Expansão para todas as categorias e produtos principais (~100 páginas).</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">⚡</span>
+          <span class="deliverable-icon"><i data-lucide="zap"></i></span>
           <div class="deliverable-text">
             <strong>Otimização de TTFB</strong>
             <span>Configuração de Full Page Cache (Varnish/Redis). Meta: 1.37s → &lt;0.8s.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🖼️</span>
+          <span class="deliverable-icon"><i data-lucide="image"></i></span>
           <div class="deliverable-text">
             <strong>Conversão de Imagens para WebP</strong>
             <span>Conversão automatizada com fallback JPEG. Redução de 30-50% no peso.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🔒</span>
+          <span class="deliverable-icon"><i data-lucide="lock"></i></span>
           <div class="deliverable-text">
             <strong>HSTS + Headers de Segurança</strong>
             <span>Strict-Transport-Security, CSP em modo enforced, limpeza de headers duplicados.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🏷️</span>
+          <span class="deliverable-icon"><i data-lucide="tag"></i></span>
           <div class="deliverable-text">
             <strong>Title Tags Otimizadas</strong>
             <span>Reescrita de titles com marca + proposta de valor em todas as categorias.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🔗</span>
+          <span class="deliverable-icon"><i data-lucide="link"></i></span>
           <div class="deliverable-text">
             <strong>Preload Hints para Recursos Críticos</strong>
             <span>CSS, fontes e imagens hero com preload para melhorar LCP.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📦</span>
+          <span class="deliverable-icon"><i data-lucide="package"></i></span>
           <div class="deliverable-text">
             <strong>Cache Headers Otimizados</strong>
             <span>Remoção de no-cache/no-store. Regras de cache por tipo de página via Cloudflare.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🧩</span>
+          <span class="deliverable-icon"><i data-lucide="puzzle"></i></span>
           <div class="deliverable-text">
             <strong>Schema WebSite + SearchAction</strong>
             <span>Sitelinks search box no Google + schema LocalBusiness para busca local.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📈</span>
+          <span class="deliverable-icon"><i data-lucide="trending-up"></i></span>
           <div class="deliverable-text">
             <strong>Relatório Mensal de Performance</strong>
             <span>2 relatórios de acompanhamento (semana 4 e 8) com métricas e ajustes.</span>
@@ -689,7 +703,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     </div>
 
     <div class="scope-result">
-      <div class="scope-result-icon">🚀</div>
+      <div class="scope-result-icon"><i data-lucide="rocket"></i></div>
       <div class="scope-result-text">
         <strong>Resultado Esperado</strong>
         <span>Tudo do Essencial + páginas de categoria rankeando para keywords comerciais, tempo de carregamento 40% mais rápido, aumento de 15-25% no tráfego orgânico em 8-10 semanas.</span>
@@ -714,70 +728,70 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
       <div class="scope-section-title">Entregáveis — Tudo do Intermediário +</div>
       <div class="deliverable-grid">
         <div class="deliverable-item">
-          <span class="deliverable-icon">📄</span>
+          <span class="deliverable-icon"><i data-lucide="file"></i></span>
           <div class="deliverable-text">
             <strong>Conteúdo para TODAS as 40+ Categorias</strong>
             <span>Textos descritivos completos com guia de compra, aplicações e diferenciadores técnicos.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🤖</span>
+          <span class="deliverable-icon"><i data-lucide="bot"></i></span>
           <div class="deliverable-text">
             <strong>Arquivo llms.txt Completo</strong>
             <span>Informações da empresa, catálogo de produtos e páginas-chave para AI crawlers.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">✍️</span>
+          <span class="deliverable-icon"><i data-lucide="pen-tool"></i></span>
           <div class="deliverable-text">
             <strong>6 Artigos de Blog Otimizados para IA</strong>
             <span>Conteúdo Q&A estruturado, estatísticas citáveis, posicionamento para AI Overviews e Perplexity.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🖼️</span>
+          <span class="deliverable-icon"><i data-lucide="image"></i></span>
           <div class="deliverable-text">
             <strong>Image Sitemap Dedicado</strong>
             <span>Sitemap XML específico para imagens de produtos, otimizando Google Images.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📍</span>
+          <span class="deliverable-icon"><i data-lucide="map-pin"></i></span>
           <div class="deliverable-text">
             <strong>Schema LocalBusiness Completo</strong>
             <span>Markup para endereço, showroom São Paulo, horários, contato. Visibilidade local.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🔔</span>
+          <span class="deliverable-icon"><i data-lucide="bell"></i></span>
           <div class="deliverable-text">
             <strong>Implementação IndexNow</strong>
             <span>Notificação automática ao Google/Bing quando conteúdo é atualizado.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">👤</span>
+          <span class="deliverable-icon"><i data-lucide="user"></i></span>
           <div class="deliverable-text">
             <strong>Atribuição de Autoria no Blog</strong>
             <span>Perfis de autor com credenciais técnicas para reforçar E-E-A-T.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📊</span>
+          <span class="deliverable-icon"><i data-lucide="bar-chart-3"></i></span>
           <div class="deliverable-text">
             <strong>Dashboard de Monitoramento</strong>
             <span>Acompanhamento semanal de rankings, tráfego orgânico e CWV por 12 semanas.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">🏆</span>
+          <span class="deliverable-icon"><i data-lucide="trophy"></i></span>
           <div class="deliverable-text">
             <strong>Análise de Concorrência Detalhada</strong>
             <span>Comparação com Instrubras, Impac, Minipa e Homis. Gaps e oportunidades.</span>
           </div>
         </div>
         <div class="deliverable-item">
-          <span class="deliverable-icon">📋</span>
+          <span class="deliverable-icon"><i data-lucide="clipboard-list"></i></span>
           <div class="deliverable-text">
             <strong>Playbook SEO para Equipe Interna</strong>
             <span>Documento com processos, checklists e guidelines para manutenção contínua do SEO.</span>
@@ -801,7 +815,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     </div>
 
     <div class="scope-result">
-      <div class="scope-result-icon">👑</div>
+      <div class="scope-result-icon"><i data-lucide="crown"></i></div>
       <div class="scope-result-text">
         <strong>Resultado Esperado</strong>
         <span>Domínio orgânico no nicho de instrumentos de medição. 2-3x tráfego orgânico, visibilidade em AI search (ChatGPT, Perplexity), 40+ categorias rankeando, blog gerando tráfego qualificado. ROI estimado em 6-12 meses.</span>
@@ -833,32 +847,32 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== OPORTUNIDADES DE NEGÓCIO ===================== -->
   <div class="section-header" id="opportunities">
-    <div class="section-icon" style="background:var(--green-bg);color:var(--green)">🚀</div>
+    <div class="section-icon" style="background:var(--green-bg);color:var(--green)"><i data-lucide="rocket"></i></div>
     <h2>Oportunidades de Negócio</h2>
     <div class="line"></div>
   </div>
 
   <div class="opp-grid">
     <div class="opp-card animate">
-      <div class="opp-card-icon">⭐</div>
+      <div class="opp-card-icon"><i data-lucide="star"></i></div>
       <h3>Rich Results no Google</h3>
       <p>Implementar Schema Product exibe estrelas, preços e disponibilidade diretamente nos resultados de busca. E-commerces que implementam rich results reportam <strong style="color:var(--green)">+20-30% de CTR</strong> nos resultados orgânicos.</p>
       <span class="opp-metric" style="background:var(--green-bg);color:var(--green)">+20-30% CTR</span>
     </div>
     <div class="opp-card animate">
-      <div class="opp-card-icon">🤖</div>
+      <div class="opp-card-icon"><i data-lucide="bot"></i></div>
       <h3>Visibilidade em IA</h3>
       <p>O site é atualmente <strong style="color:var(--red)">invisível</strong> para ChatGPT, Perplexity e Claude. Implementar llms.txt e conteúdo estruturado posiciona a Instrutherm como fonte citável em respostas de IA.</p>
       <span class="opp-metric" style="background:var(--blue-bg);color:var(--blue)">Canal novo de tráfego</span>
     </div>
     <div class="opp-card animate">
-      <div class="opp-card-icon">⚡</div>
+      <div class="opp-card-icon"><i data-lucide="zap"></i></div>
       <h3>Velocidade & Conversão</h3>
       <p>TTFB de <strong style="color:var(--red)">1.37s</strong> precisa chegar a <strong style="color:var(--green)">&lt;0.8s</strong>. Isso melhora ranking E conversão. Cada 100ms de melhoria corresponde a aproximadamente <strong>+1% em taxa de conversão</strong>.</p>
       <span class="opp-metric" style="background:var(--orange-bg);color:var(--orange)">+5% conversão potencial</span>
     </div>
     <div class="opp-card animate">
-      <div class="opp-card-icon">📂</div>
+      <div class="opp-card-icon"><i data-lucide="folder-open"></i></div>
       <h3>SEO de Categorias</h3>
       <p><strong style="color:var(--red)">40+ categorias sem conteúdo</strong> representam 40+ oportunidades de ranking perdidas. Cada categoria com texto descritivo de qualidade pode rankear para dezenas de palavras-chave.</p>
       <span class="opp-metric" style="background:var(--accent-glow);color:var(--accent)">40+ novas páginas otimizadas</span>
@@ -867,7 +881,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== ANÁLISE DE PALAVRAS-CHAVE ===================== -->
   <div class="section-header" id="keywords">
-    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">🔑</div>
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)"><i data-lucide="key-round"></i></div>
     <h2>Análise de Palavras-Chave</h2>
     <div class="line"></div>
   </div>
@@ -1098,7 +1112,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== PLANO DE AÇÃO ===================== -->
   <div class="section-header" id="actions">
-    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">🎯</div>
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)"><i data-lucide="target"></i></div>
     <h2>Plano de Ação Priorizado</h2>
     <div class="line"></div>
   </div>
@@ -1337,7 +1351,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== QUICK WINS ===================== -->
   <div class="section-header" id="quickwins">
-    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)">⚡</div>
+    <div class="section-icon" style="background:var(--accent-glow);color:var(--accent)"><i data-lucide="zap"></i></div>
     <h2>Quick Wins</h2>
     <div class="line"></div>
   </div>
@@ -1399,7 +1413,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== TECHNICAL SEO ===================== -->
   <div class="section-header" id="technical">
-    <div class="section-icon" style="background:var(--yellow-bg);color:var(--yellow)">⚙️</div>
+    <div class="section-icon" style="background:var(--yellow-bg);color:var(--yellow)"><i data-lucide="settings"></i></div>
     <h2>Technical SEO</h2>
     <div class="line"></div>
     <span class="badge badge-warn">55/100</span>
@@ -1409,8 +1423,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <!-- Crawlability -->
     <div class="card card-sev sev-yellow animate">
       <div class="card-header">
-        <div class="card-title">🕷️ Crawlability</div>
-        <div class="card-score warn">⚠️</div>
+        <div class="card-title"><i data-lucide="bug" style="width:14px;height:14px"></i> Crawlability</div>
+        <div class="card-score warn"><i data-lucide="alert-triangle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>robots.txt</td><td><span class="badge badge-warn">Crawl-delay: 15s</span></td></tr>
@@ -1425,8 +1439,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <!-- Indexability -->
     <div class="card card-sev sev-yellow animate">
       <div class="card-header">
-        <div class="card-title">📑 Indexabilidade</div>
-        <div class="card-score warn">⚠️</div>
+        <div class="card-title"><i data-lucide="file-search" style="width:14px;height:14px"></i> Indexabilidade</div>
+        <div class="card-score warn"><i data-lucide="alert-triangle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>Meta robots</td><td><span class="badge badge-warn">Não detectado</span></td></tr>
@@ -1440,8 +1454,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <!-- Security -->
     <div class="card card-sev sev-green animate">
       <div class="card-header">
-        <div class="card-title">🔒 Segurança</div>
-        <div class="card-score good">✅</div>
+        <div class="card-title"><i data-lucide="shield" style="width:14px;height:14px"></i> Segurança</div>
+        <div class="card-score good"><i data-lucide="check-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>HTTPS</td><td><span class="badge badge-good">✓ Ativo em todo site</span></td></tr>
@@ -1456,8 +1470,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
     <!-- Server Performance -->
     <div class="card card-sev sev-red animate">
       <div class="card-header">
-        <div class="card-title">🖥️ Servidor</div>
-        <div class="card-score critical">❌</div>
+        <div class="card-title"><i data-lucide="server" style="width:14px;height:14px"></i> Servidor</div>
+        <div class="card-score critical"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>TTFB</td><td><span class="badge badge-critical">1.37s (meta: &lt;800ms)</span></td></tr>
@@ -1471,7 +1485,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== CONTENT QUALITY ===================== -->
   <div class="section-header" id="content">
-    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">📝</div>
+    <div class="section-icon" style="background:var(--red-bg);color:var(--red)"><i data-lucide="file-text"></i></div>
     <h2>Qualidade de Conteúdo</h2>
     <div class="line"></div>
     <span class="badge badge-critical">35/100</span>
@@ -1480,8 +1494,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
   <div class="cards-grid">
     <div class="card card-sev sev-red animate">
       <div class="card-header">
-        <div class="card-title">🏗️ Estrutura de Headings</div>
-        <div class="card-score critical">❌</div>
+        <div class="card-title"><i data-lucide="building" style="width:14px;height:14px"></i> Estrutura de Headings</div>
+        <div class="card-score critical"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>H1 na Homepage</td><td><span class="badge badge-critical">5+ tags H1</span></td></tr>
@@ -1493,8 +1507,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-red animate">
       <div class="card-header">
-        <div class="card-title">📄 Conteúdo das Categorias</div>
-        <div class="card-score critical">❌</div>
+        <div class="card-title"><i data-lucide="file" style="width:14px;height:14px"></i> Conteúdo das Categorias</div>
+        <div class="card-score critical"><i data-lucide="x-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>Texto descritivo</td><td><span class="badge badge-critical">Ausente</span></td></tr>
@@ -1506,8 +1520,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-yellow animate">
       <div class="card-header">
-        <div class="card-title">🏆 E-E-A-T</div>
-        <div class="card-score warn">⚠️</div>
+        <div class="card-title"><i data-lucide="trophy" style="width:14px;height:14px"></i> E-E-A-T</div>
+        <div class="card-score warn"><i data-lucide="alert-triangle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>Experiência</td><td><span class="badge badge-good">35+ anos no mercado</span></td></tr>
@@ -1520,8 +1534,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-yellow animate">
       <div class="card-header">
-        <div class="card-title">🌐 Idioma &amp; Localização</div>
-        <div class="card-score good">✅</div>
+        <div class="card-title"><i data-lucide="globe" style="width:14px;height:14px"></i> Idioma &amp; Localização</div>
+        <div class="card-score good"><i data-lucide="check-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>HTML lang</td><td><span class="badge badge-good">✓ pt_BR</span></td></tr>
@@ -1533,7 +1547,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== ON-PAGE SEO ===================== -->
   <div class="section-header" id="onpage">
-    <div class="section-icon" style="background:var(--orange-bg);color:var(--orange)">🏷️</div>
+    <div class="section-icon" style="background:var(--orange-bg);color:var(--orange)"><i data-lucide="tag"></i></div>
     <h2>On-Page SEO</h2>
     <div class="line"></div>
     <span class="badge badge-bad">40/100</span>
@@ -1542,8 +1556,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
   <div class="cards-grid">
     <div class="card card-sev sev-orange animate">
       <div class="card-header">
-        <div class="card-title">🔤 Title Tags</div>
-        <div class="card-score bad">⚠️</div>
+        <div class="card-title"><i data-lucide="type" style="width:14px;height:14px"></i> Title Tags</div>
+        <div class="card-score bad"><i data-lucide="alert-triangle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>Homepage</td><td><span class="badge badge-warn">Não confirmado</span></td></tr>
@@ -1555,8 +1569,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-green animate">
       <div class="card-header">
-        <div class="card-title">🔗 Links Internos</div>
-        <div class="card-score good">✅</div>
+        <div class="card-title"><i data-lucide="link" style="width:14px;height:14px"></i> Links Internos</div>
+        <div class="card-score good"><i data-lucide="check-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>Links na homepage</td><td><span class="badge badge-good">150+ links internos</span></td></tr>
@@ -1568,8 +1582,8 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-green animate">
       <div class="card-header">
-        <div class="card-title">🌐 URL Structure</div>
-        <div class="card-score good">✅</div>
+        <div class="card-title"><i data-lucide="globe" style="width:14px;height:14px"></i> URL Structure</div>
+        <div class="card-score good"><i data-lucide="check-circle" style="width:18px;height:18px"></i></div>
       </div>
       <table class="audit-table">
         <tr><td>Formato</td><td><span class="badge badge-good">✓ URLs limpas</span></td></tr>
@@ -1582,7 +1596,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== SCHEMA ===================== -->
   <div class="section-header" id="schema">
-    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">🧩</div>
+    <div class="section-icon" style="background:var(--red-bg);color:var(--red)"><i data-lucide="puzzle"></i></div>
     <h2>Schema / Dados Estruturados</h2>
     <div class="line"></div>
     <span class="badge badge-critical">15/100</span>
@@ -1592,32 +1606,32 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <div class="schema-grid">
     <div class="schema-card animate">
-      <div class="icon">🏢</div>
+      <div class="icon"><i data-lucide="building-2"></i></div>
       <div class="name">Organization</div>
       <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
     </div>
     <div class="schema-card animate">
-      <div class="icon">📦</div>
+      <div class="icon"><i data-lucide="package"></i></div>
       <div class="name">Product</div>
       <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
     </div>
     <div class="schema-card animate">
-      <div class="icon">🧭</div>
+      <div class="icon"><i data-lucide="compass"></i></div>
       <div class="name">BreadcrumbList</div>
       <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
     </div>
     <div class="schema-card animate">
-      <div class="icon">🔎</div>
+      <div class="icon"><i data-lucide="search"></i></div>
       <div class="name">WebSite + Search</div>
       <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
     </div>
     <div class="schema-card animate">
-      <div class="icon">📍</div>
+      <div class="icon"><i data-lucide="map-pin"></i></div>
       <div class="name">LocalBusiness</div>
       <div class="status"><span class="badge badge-critical">✗ Ausente</span></div>
     </div>
     <div class="schema-card animate">
-      <div class="icon">❓</div>
+      <div class="icon"><i data-lucide="help-circle"></i></div>
       <div class="name">FAQPage</div>
       <div class="status"><span class="badge badge-na">N/A — Não recomendado</span></div>
     </div>
@@ -1625,7 +1639,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== PERFORMANCE ===================== -->
   <div class="section-header" id="performance">
-    <div class="section-icon" style="background:var(--orange-bg);color:var(--orange)">⚡</div>
+    <div class="section-icon" style="background:var(--orange-bg);color:var(--orange)"><i data-lucide="zap"></i></div>
     <h2>Performance &amp; Core Web Vitals</h2>
     <div class="line"></div>
     <span class="badge badge-bad">45/100</span>
@@ -1634,7 +1648,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
   <div class="cards-grid">
     <div class="card card-sev sev-red animate">
       <div class="card-header">
-        <div class="card-title">🎯 Core Web Vitals</div>
+        <div class="card-title"><i data-lucide="target" style="width:14px;height:14px"></i> Core Web Vitals</div>
       </div>
       <table class="audit-table">
         <tr>
@@ -1654,7 +1668,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-orange animate">
       <div class="card-header">
-        <div class="card-title">📦 Recursos</div>
+        <div class="card-title"><i data-lucide="package" style="width:14px;height:14px"></i> Recursos</div>
       </div>
       <table class="audit-table">
         <tr><td>JS Modules (RequireJS)</td><td><span class="badge badge-bad">80+ módulos</span></td></tr>
@@ -1669,7 +1683,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== AI / GEO ===================== -->
   <div class="section-header" id="geo">
-    <div class="section-icon" style="background:var(--red-bg);color:var(--red)">🤖</div>
+    <div class="section-icon" style="background:var(--red-bg);color:var(--red)"><i data-lucide="bot"></i></div>
     <h2>AI Search &amp; GEO</h2>
     <div class="line"></div>
     <span class="badge badge-critical">20/100</span>
@@ -1678,7 +1692,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
   <div class="cards-grid">
     <div class="card card-sev sev-red animate">
       <div class="card-header">
-        <div class="card-title">🤖 AI Crawlers</div>
+        <div class="card-title"><i data-lucide="bot" style="width:14px;height:14px"></i> AI Crawlers</div>
       </div>
       <table class="audit-table">
         <tr><td>GPTBot</td><td><span class="badge badge-warn">Sem política definida</span></td></tr>
@@ -1691,7 +1705,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
     <div class="card card-sev sev-red animate">
       <div class="card-header">
-        <div class="card-title">📎 Citabilidade</div>
+        <div class="card-title"><i data-lucide="paperclip" style="width:14px;height:14px"></i> Citabilidade</div>
       </div>
       <table class="audit-table">
         <tr><td>Passagens citáveis</td><td><span class="badge badge-critical">✗ Ausentes</span></td></tr>
@@ -1705,7 +1719,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
 
   <!-- ===================== IMAGES ===================== -->
   <div class="section-header" id="images">
-    <div class="section-icon" style="background:var(--yellow-bg);color:var(--yellow)">🖼️</div>
+    <div class="section-icon" style="background:var(--yellow-bg);color:var(--yellow)"><i data-lucide="image"></i></div>
     <h2>Imagens</h2>
     <div class="line"></div>
     <span class="badge badge-warn">55/100</span>
@@ -1714,7 +1728,7 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:var(--bg)
   <div class="cards-grid">
     <div class="card card-sev sev-yellow animate">
       <div class="card-header">
-        <div class="card-title">🖼️ Otimização de Imagens</div>
+        <div class="card-title"><i data-lucide="image" style="width:14px;height:14px"></i> Otimização de Imagens</div>
       </div>
       <table class="audit-table">
         <tr><td>Alt text (produtos)</td><td><span class="badge badge-good">✓ Presente e descritivo</span></td></tr>
@@ -1765,6 +1779,8 @@ function switchScope(scope) {
   document.querySelector('.tab-' + scope).classList.add('active');
   document.getElementById('scope-' + scope).classList.add('active');
 }
+
+lucide.createIcons();
 </script>
 </body>
 </html>
