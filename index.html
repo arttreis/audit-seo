@@ -204,28 +204,28 @@ a{text-decoration:none;color:inherit}
     <div class="stat-card animate delay-2">
       <div class="stat-card-icon" style="background:var(--accent-glow);color:var(--accent)"><i data-lucide="building-2"></i></div>
       <div class="stat-card-data">
-        <div class="stat-card-value" style="color:var(--accent)">1</div>
+        <div class="stat-card-value" style="color:var(--accent)">2</div>
         <div class="stat-card-label">Clientes</div>
       </div>
     </div>
     <div class="stat-card animate delay-3">
       <div class="stat-card-icon" style="background:var(--orange-bg);color:var(--orange)"><i data-lucide="activity"></i></div>
       <div class="stat-card-data">
-        <div class="stat-card-value" style="color:var(--orange)">48</div>
+        <div class="stat-card-value" style="color:var(--red)">41</div>
         <div class="stat-card-label">Score Médio</div>
       </div>
     </div>
     <div class="stat-card animate delay-4">
       <div class="stat-card-icon" style="background:var(--blue-bg);color:var(--blue)"><i data-lucide="globe"></i></div>
       <div class="stat-card-data">
-        <div class="stat-card-value" style="color:var(--text)">~700</div>
+        <div class="stat-card-value" style="color:var(--text)">~740</div>
         <div class="stat-card-label">URLs Analisadas</div>
       </div>
     </div>
     <div class="stat-card animate delay-5">
       <div class="stat-card-icon" style="background:var(--red-bg);color:var(--red)"><i data-lucide="alert-triangle"></i></div>
       <div class="stat-card-data">
-        <div class="stat-card-value" style="color:var(--red)">23</div>
+        <div class="stat-card-value" style="color:var(--red)">32</div>
         <div class="stat-card-label">Issues Críticas</div>
       </div>
     </div>
@@ -235,7 +235,7 @@ a{text-decoration:none;color:inherit}
   <div class="section-header animate delay-3">
     <h2>Clientes</h2>
     <div class="line"></div>
-    <span class="count">1</span>
+    <span class="count">2</span>
   </div>
 
   <!-- Clients Grid -->
@@ -335,6 +335,104 @@ a{text-decoration:none;color:inherit}
       <!-- Footer -->
       <div class="client-card-footer">
         <span class="client-date"><i data-lucide="calendar"></i> 12 de março de 2026</span>
+        <span class="client-cta">Ver relatório completo <i data-lucide="arrow-right"></i></span>
+      </div>
+    </a>
+
+    <!-- SP Capital -->
+    <a href="./sp-capital" class="client-card animate delay-5">
+      <span class="client-arrow"><i data-lucide="arrow-right" style="width:16px;height:16px"></i></span>
+
+      <div class="client-card-top">
+        <div class="score-ring-wrap">
+          <svg viewBox="0 0 120 120">
+            <defs>
+              <linearGradient id="grad-spcapital" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#F87171"/>
+                <stop offset="100%" stop-color="#FB923C"/>
+              </linearGradient>
+            </defs>
+            <circle class="score-ring-bg" cx="60" cy="60" r="50"/>
+            <circle class="score-ring-fill" cx="60" cy="60" r="50"
+              stroke="url(#grad-spcapital)"
+              stroke-dasharray="314.16"
+              stroke-dashoffset="207.35"/>
+          </svg>
+          <div class="score-ring-text">
+            <div class="num" style="color:var(--red)">34</div>
+            <div class="lbl">/ 100</div>
+          </div>
+        </div>
+
+        <div class="client-info">
+          <div class="client-name">SP Capital</div>
+          <span class="client-url">spcapital.com.br</span>
+          <p class="client-desc">FIDC e Securitizadora — antecipação de recebíveis e crédito estruturado, 5 anos de mercado, ~40 URLs indexadas.</p>
+          <div class="client-chips">
+            <span class="client-chip"><span class="dot" style="background:var(--accent)"></span> FIDC / Securitizadora</span>
+            <span class="client-chip"><span class="dot" style="background:var(--blue)"></span> WordPress + Elementor</span>
+            <span class="client-chip"><span class="dot" style="background:var(--cyan)"></span> LiteSpeed Cache</span>
+            <span class="client-chip"><span class="dot" style="background:var(--yellow)"></span> pt-BR</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sub-scores -->
+      <div class="client-card-scores">
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="settings"></i> Technical</span>
+            <span class="sub-score-val" style="color:var(--red)">38</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:38%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="file-text"></i> Conteúdo</span>
+            <span class="sub-score-val" style="color:var(--orange)">42</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:42%;background:var(--orange)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="tag"></i> On-Page</span>
+            <span class="sub-score-val" style="color:var(--red)">25</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:25%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="puzzle"></i> Schema</span>
+            <span class="sub-score-val" style="color:var(--red)">33</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:33%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="zap"></i> Perform.</span>
+            <span class="sub-score-val" style="color:var(--red)">35</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:35%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="bot"></i> AI / GEO</span>
+            <span class="sub-score-val" style="color:var(--red)">38</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:38%;background:var(--red)"></div></div>
+        </div>
+        <div class="sub-score">
+          <div class="sub-score-header">
+            <span class="sub-score-name"><i data-lucide="image"></i> Imagens</span>
+            <span class="sub-score-val" style="color:var(--red)">18</span>
+          </div>
+          <div class="sub-score-track"><div class="sub-score-fill" style="width:18%;background:var(--red)"></div></div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="client-card-footer">
+        <span class="client-date"><i data-lucide="calendar"></i> 14 de março de 2026</span>
         <span class="client-cta">Ver relatório completo <i data-lucide="arrow-right"></i></span>
       </div>
     </a>
